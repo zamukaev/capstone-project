@@ -1,8 +1,6 @@
 import styled from "styled-components";
-import { HeadlineProps } from "./HeadlineProps";
 
-// styled h tag
-export const Headline = styled.h2<HeadlineProps>`
+export const Headline = styled.h2`
   font-weight: 500;
   font-size: 18px;
   line-height: 21px;

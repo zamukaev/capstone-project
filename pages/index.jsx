@@ -1,15 +1,8 @@
 import styled from "styled-components";
 import Posts from "../components/Posts";
 import axios from "axios";
-import { IPosts } from "../components/Posts/PostsType";
-import { GetServerSideProps } from "next/types";
 
-// types for Styled main component
-interface WrapperProps {
-  color?: string;
-}
-
-const StyledWrapper = styled.section<WrapperProps>`
+const StyledWrapper = styled.section`
   max-width: 1200px;
   margin: 0px auto;
   min-height: 100vh;
@@ -26,12 +19,13 @@ const StyledWrapper = styled.section<WrapperProps>`
 const StyledMain = styled.main`
   grid-area: main;
   display: grid;
+  gap: 30px;
   grid-template-rows: 1fr 1fr;
   grid-template-columns: 1fr;
   padding: 0px 20px;
 `;
 
-export default function Home({ posts }: IHomeProps): JSX.Element {
+export default function Home({ posts }) {
   return (
     <StyledWrapper color="#D2D2D2">
       <StyledMain>
@@ -43,11 +37,9 @@ export default function Home({ posts }: IHomeProps): JSX.Element {
 
 // ssr
 
-export const getServerSideProps: GetServerSideProps<IHomeProps> = async (
-  context
-) => {
+export const getServerSideProps = async (context) => {
   // fetch data with axios from backend
-  const { data: posts } = await axios.get<IPosts[]>(
+  const { data: posts } = await axios.get(
     process.env.NEXT_PUBLIC_DOMAIN + "/api/posts"
   );
   return {
@@ -56,7 +48,3 @@ export const getServerSideProps: GetServerSideProps<IHomeProps> = async (
     },
   };
 };
-// types for the home page props
-export interface IHomeProps extends Record<string, unknown> {
-  posts: IPosts[];
-}

@@ -1,17 +1,24 @@
 import axios from "axios";
+import Link from "next/link";
+import { Button } from "../../components/Button";
 import Post from "../../components/Post";
 import { StyledSection } from "../../components/Posts/Posts.styled";
 
 const Detais = ({ post }) => {
   return (
-    <StyledSection>
-      <Post
-        image={post?.image}
-        title={post?.title}
-        alt={post?.alt}
-        full_desc={post?.full_desc}
-      />
-    </StyledSection>
+    <>
+      <Button as={Link} href="/" padding="9px 15px" radius="5px">
+        Zurück
+      </Button>
+      <StyledSection>
+        <Post
+          image={post?.image}
+          title={post?.title}
+          alt={post?.alt}
+          full_desc={post?.full_desc}
+        />
+      </StyledSection>
+    </>
   );
 };
 

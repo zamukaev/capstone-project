@@ -22,7 +22,7 @@ const StyledMain = styled.main`
   grid-area: main;
   display: grid;
   gap: 30px;
-  grid-template-rows: 1fr;
+  grid-template-rows: auto 1fr;
   grid-template-columns: 1fr;
   padding: 0px 20px;
 `;

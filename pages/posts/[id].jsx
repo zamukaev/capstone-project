@@ -6,10 +6,10 @@ const Detais = ({ post }) => {
   return (
     <StyledSection>
       <Post
-        image={post.image}
-        title={post.title}
-        alt={post.alt}
-        full_desc={post.full_desc}
+        image={post?.image}
+        title={post?.title}
+        alt={post?.alt}
+        full_desc={post?.full_desc}
       />
     </StyledSection>
   );

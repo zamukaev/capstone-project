@@ -1,24 +1,17 @@
 import axios from "axios";
-import styled from "styled-components";
 import Post from "../../components/Post";
-import { StyledListItem, StyledUl } from "../../components/Posts/Posts.styles";
-const StyledSection = styled.section`
-  margin: ${(props) => props.margin || "0px"};
-`;
+import { StyledSection } from "../../components/Posts/Posts.styled";
 
 const Detais = ({ post }) => {
-  console.log(post);
   return (
-    <StyledUl>
-      <StyledListItem padding="0px 15px 15px">
-        <Post
-          image={post.image}
-          title={post.title}
-          alt={post.alt}
-          desc={post.desc}
-        />
-      </StyledListItem>
-    </StyledUl>
+    <StyledSection>
+      <Post
+        image={post.image}
+        title={post.title}
+        alt={post.alt}
+        full_desc={post.full_desc}
+      />
+    </StyledSection>
   );
 };
 

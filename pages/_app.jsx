@@ -13,8 +13,8 @@ const StyledWrapper = styled.section`
   grid-template-areas:
     "head head"
     "main main"
-    "main main";
-  grid-template-rows: 50px 1fr 1fr;
+    "footer footer";
+  grid-template-rows: 50px 1fr 50px;
   grid-template-columns: 1fr 1fr;
 `;
 
@@ -34,7 +34,7 @@ export default function App({ Component, pageProps }) {
       <Head>
         <title>Capstone Project</title>
       </Head>
-      <StyledWrapper color="#D2D2D2">
+      <StyledWrapper>
         <StyledMain>
           <Component {...pageProps} />
         </StyledMain>

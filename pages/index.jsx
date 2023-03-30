@@ -7,7 +7,6 @@ export default function Home({ posts }) {
 }
 
 // ssr
-
 export const getServerSideProps = async (context) => {
   // fetch data with axios from backend
   const { data: posts } = await axios.get(

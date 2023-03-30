@@ -1,8 +1,9 @@
 import { Headline } from "../Headline/Headline";
 import { Paragraph } from "../Paragraph/Paragraph";
-import { StyledImage } from "./Post.styles";
+import { StyledContent, StyledImage } from "./Post.styled";
+import { StyledLink } from "./Post.styled";
 
-const Post = ({ image, alt, title, desc, fulldesc }) => {
+const Post = ({ id, image, alt, title, desc, full_desc }) => {
   return (
     <>
       <StyledImage
@@ -11,8 +12,18 @@ const Post = ({ image, alt, title, desc, fulldesc }) => {
         width={370}
         height={150}
       />
-      <Headline>{title}</Headline>
-      <Paragraph>{desc}</Paragraph>
+      <StyledContent padding="0px 10px">
+        <Headline>{title}</Headline>
+        <Paragraph>
+          {full_desc ? full_desc : desc}
+          {desc && (
+            <StyledLink margin="0px 0px 0px 5px" href={`/posts/${id}`}>
+              {" "}
+              read more...
+            </StyledLink>
+          )}
+        </Paragraph>
+      </StyledContent>
     </>
   );
 };

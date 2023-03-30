@@ -10,5 +10,7 @@ export default async function handler(req, res) {
       return res.status(404).json({ message: "Not found" });
     }
     res.status(200).json(post);
+  } else {
+    return response.status(405).json({ message: "Method not allowed" });
   }
 }

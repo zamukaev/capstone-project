@@ -1,6 +1,6 @@
 import { Headline } from "../Headline/Headline";
 import { Paragraph } from "../Paragraph/Paragraph";
-import { StyledContent, StyledImage } from "./Post.styles";
+import { StyledImage } from "./Post.styles";
 
 const Post = ({ image, alt, title, desc, fulldesc }) => {
   return (
@@ -11,10 +11,8 @@ const Post = ({ image, alt, title, desc, fulldesc }) => {
         width={370}
         height={150}
       />
-      <StyledContent padding="0px 15px">
-        <Headline>{title}</Headline>
-        <Paragraph>{desc}</Paragraph>
-      </StyledContent>
+      <Headline>{title}</Headline>
+      <Paragraph>{desc}</Paragraph>
     </>
   );
 };

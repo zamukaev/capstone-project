@@ -1,11 +1,11 @@
 import Post from "../Post";
-import { StyledListItem, StyledUl } from "./Posts.styled";
+import { StyledUl, StyledListItem } from "./Posts.styled";
 
 const Posts = ({ posts }) => {
   return (
     <StyledUl>
       {posts.map((post) => (
-        <StyledListItem key={post._id} padding="0px 15px 15px 15px">
+        <StyledListItem key={post._id}>
           <Post
             image={post.image}
             alt={post.alt}

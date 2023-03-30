@@ -1,8 +1,11 @@
 import styled from "styled-components";
 import Image from "next/image";
+
 export const StyledImage = styled(Image)`
   width: 100%;
+  border-radius: 5px;
 `;
+
 export const StyledContent = styled.div`
   display: grid;
   grid-template-rows: 1fr;

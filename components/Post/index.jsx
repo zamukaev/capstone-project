@@ -1,7 +1,7 @@
 import { Headline } from "../Headline/Headline";
 import { Paragraph } from "../Paragraph/Paragraph";
-import { StyledContent, StyledImage } from "./Post.styles";
 
+import { StyledImage } from "./Post.styled";
 const Post = ({ image, alt, title, desc, fulldesc }) => {
   return (
     <>

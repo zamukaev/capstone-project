@@ -11,10 +11,8 @@ const Post = ({ image, alt, title, desc, fulldesc }) => {
         width={370}
         height={150}
       />
-      <StyledContent padding="0px 15px">
-        <Headline>{title}</Headline>
-        <Paragraph>{desc}</Paragraph>
-      </StyledContent>
+      <Headline>{title}</Headline>
+      <Paragraph>{desc}</Paragraph>
     </>
   );
 };

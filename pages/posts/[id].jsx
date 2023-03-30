@@ -32,7 +32,6 @@ export async function getStaticPaths() {
 }
 
 export const getStaticProps = async ({ params }) => {
-  console.log(params);
   const { id } = params;
   const { data: post } = await axios.get(
     process.env.NEXT_PUBLIC_DOMAIN + `/api/posts/${id}`

@@ -7,11 +7,11 @@ const Posts = ({ posts }) => {
       {posts.map((post) => (
         <StyledListItem key={post._id}>
           <Post
-            id={post._id}
-            image={post.image}
-            alt={post.alt}
-            title={post.title}
-            desc={post.desc}
+            id={post?._id}
+            image={post?.image}
+            alt={post?.alt}
+            title={post?.title}
+            desc={post?.desc}
           />
         </StyledListItem>
       ))}

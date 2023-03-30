@@ -1,11 +1,13 @@
 import Post from "../Post";
-import { StyledListItem, StyledSection, StyledUl } from "./Posts.styles";
+import { StyledSection } from "./Posts.styles";
+import Link from "next/link";
 
 const Posts = ({ posts }) => {
   return (
     <>
       {posts.map((post) => (
         <StyledSection key={post._id}>
+          <Link href={`/posts/${post._id}`}>Link</Link>
           <Post
             image={post.image}
             alt={post.alt}

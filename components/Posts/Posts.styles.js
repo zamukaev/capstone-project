@@ -1,4 +1,3 @@
-// styles for Posts page
 import styled from "styled-components";
 
 export const StyledSection = styled.section`
@@ -19,4 +18,5 @@ export const StyledListItem = styled.li`
   gap: 15px;
   padding: ${(props) => props.padding || "0px"};
   margin: ${(props) => props.margin || "0px"};
+  color: red;
 `;

@@ -10,13 +10,13 @@ export default createGlobalStyle`
   box-sizing: border-box;
 }
 ol li,
-ul li{
+ul li {
   list-style:none;
 }
-a, a:visited{
+a, a:visited {
   text-decoration:none;
 }
-a:hover{
+a:hover {
   text-decoration:none;
 }
 h1,
@@ -24,11 +24,11 @@ h2,
 h3,
 h4,
 h5,
-h6{
+h6 {
   font-weight:inherit;
   font-size:inherit;
 }
-img{
+img {
   vertical-align:top;
 }
 html,
@@ -42,18 +42,18 @@ body {
 }
 input,
 button,
-textarea{
+textarea {
   font-family:inherit;
 }
 input[typy="text"],
 input[typy="email"],
 input[typy="tel"],
-textarea{
+textarea {
   -webkit-appearance:none;
   -moz-appearance:none;
   appearance:none;
 }
-button{
+button {
   background:none;
 }
 `;

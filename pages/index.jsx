@@ -1,8 +1,9 @@
-import styled from "styled-components";
+import axios from "axios";
 import Posts from "../components/Posts";
 import axios from "axios";
 
 export default function Home({ posts }) {
+  return <Posts posts={posts} />;
   return <Posts posts={posts} />;
 }
 

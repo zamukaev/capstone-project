@@ -6,6 +6,7 @@ export const StyledImage = styled(Image)`
   width: 100%;
   border-radius: ${(props) => props.radios || "5px 5px 0px 0px"};
 `;
+
 export const StyledContent = styled.div`
   display: grid;
   grid-template-rows: 1fr;

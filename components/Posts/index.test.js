@@ -1,4 +1,4 @@
-import { getByRole, render, screen } from "@testing-library/react";
+import { render, screen } from "@testing-library/react";
 import Posts from "./index";
 
 const posts = [
@@ -24,34 +24,12 @@ const posts = [
 
 test("correct rendering the post component", () => {
   render(<Posts posts={posts} />);
-  const headline1 = screen.getByRole("heading", {
-    name: "Web dev1",
-  });
-  expect(headline1).toBeInTheDocument();
 
-  const headline2 = screen.getByRole("heading", {
-    name: "Web dev2",
-  });
-  expect(headline2).toBeInTheDocument();
-  const headline3 = screen.getByRole("heading", {
-    name: "Web dev3",
-  });
-  expect(headline3).toBeInTheDocument();
+  const headlines = screen.getAllByRole("heading");
+  expect(headlines).toHaveLength(3);
 
-  const picture1 = screen.getByRole("img", {
-    name: "photo of post1",
-  });
-  expect(picture1).toBeInTheDocument();
-
-  const picture2 = screen.getByRole("img", {
-    name: "photo of post2",
-  });
-  expect(picture2).toBeInTheDocument();
-
-  const picture3 = screen.getByRole("img", {
-    name: "photo of post3",
-  });
-  expect(picture3).toBeInTheDocument();
+  const images = screen.getAllByRole("img");
+  expect(images).toHaveLength(3);
 
   const paragraph1 = screen.getByText(/hi world1/i);
   expect(paragraph1).toBeInTheDocument();

@@ -2,8 +2,8 @@ import mongoose, { Model } from "mongoose";
 
 const PostSchema = new mongoose.Schema({
   title: { type: String, require: true },
-  desc: { type: String, required: true },
-  full_desc: String,
+  description: { type: String, required: true },
+  full_description: String,
   alt: String,
   image: { type: String },
 });

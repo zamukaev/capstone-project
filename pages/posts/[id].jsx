@@ -11,12 +11,14 @@ const Detais = ({ post }) => {
         Zurück
       </Button>
       <StyledSection>
-        <Post
-          image={post?.image}
-          title={post?.title}
-          alt={post?.alt}
-          full_desc={post?.full_desc}
-        />
+        {post && (
+          <Post
+            image={post.image}
+            title={post.title}
+            alt={post.alt}
+            full_description={post.full_description}
+          />
+        )}
       </StyledSection>
     </>
   );

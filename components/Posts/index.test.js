@@ -4,19 +4,19 @@ import Posts from "./index";
 const posts = [
   {
     title: "Web dev1",
-    desc: "hi world1",
+    description: "hi world1",
     alt: "photo of post1",
     image: "",
   },
   {
     title: "Web dev2",
-    desc: "hi hi world2",
+    description: "hi hi world2",
     alt: "photo of post2",
     image: "",
   },
   {
     title: "Web dev3",
-    desc: "hi hi hi world3",
+    description: "hi hi hi world3",
     alt: "photo of post3",
     image: "",
   },

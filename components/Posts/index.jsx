@@ -3,15 +3,15 @@ import { StyledUl, StyledListItem } from "./Posts.styled";
 
 const Posts = ({ posts }) => {
   return (
-    <StyledUl>
-      {posts.map((post) => (
-        <StyledListItem key={post?._id}>
+    <StyledUl role="list">
+      {posts?.map((post) => (
+        <StyledListItem role="listitem" key={post?._id}>
           <Post
-            id={post?._id}
-            image={post?.image}
-            alt={post?.alt}
-            title={post?.title}
-            desc={post?.desc}
+            id={post._id}
+            image={post.image}
+            alt={post.alt}
+            title={post.title}
+            description={post.description}
           />
         </StyledListItem>
       ))}

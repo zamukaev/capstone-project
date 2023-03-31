@@ -3,7 +3,7 @@ import { Paragraph } from "../Paragraph/Paragraph";
 import { StyledContent, StyledImage } from "./Post.styled";
 import { StyledLink } from "./Post.styled";
 
-const Post = ({ id, image, alt, title, desc, full_desc }) => {
+const Post = ({ id, image, alt, title, description, full_description }) => {
   return (
     <>
       <StyledImage
@@ -15,10 +15,9 @@ const Post = ({ id, image, alt, title, desc, full_desc }) => {
       <StyledContent padding="0px 10px">
         <Headline>{title}</Headline>
         <Paragraph>
-          {full_desc ? full_desc : desc}
-          {desc && (
+          {full_description ? full_description : description}
+          {description && (
             <StyledLink margin="0px 0px 0px 5px" href={`/posts/${id}`}>
-              {" "}
               read more...
             </StyledLink>
           )}

@@ -2,7 +2,9 @@ import { render, screen } from "@testing-library/react";
 import Post from "./index";
 
 test("correct rendering the post component", () => {
-  render(<Post image="/jhj.png" alt="alt" title="hello" desc="description" />);
+  render(
+    <Post image="/jhj.png" alt="alt" title="hello" description="description" />
+  );
 
   const picture = screen.getByRole("img", {
     name: /alt/i,

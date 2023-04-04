@@ -1,8 +1,8 @@
 import axios from "axios";
 import Link from "next/link";
-import { Button } from "../../components/Button";
+import { Button } from "../../components/ui/Button";
 import Post from "../../components/Post";
-import { StyledSection } from "../../components/Section/Section.styled";
+import { StyledSection } from "../../components/ui/Section/Section.styled";
 
 const Detais = ({ post }) => {
   return (

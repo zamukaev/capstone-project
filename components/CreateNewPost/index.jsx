@@ -3,8 +3,8 @@ import { useRouter } from "next/router";
 import { useState } from "react";
 import { useForm } from "react-hook-form";
 import axios from "axios";
-import { Headline } from "../Headline/Headline";
-import { StyledSection } from "../Section/Section.styled";
+import { Headline } from "../ui/Headline/Headline";
+import { StyledSection } from "../ui/Section/Section.styled";
 import Form from "../Form";
 
 const CreateNewPost = () => {

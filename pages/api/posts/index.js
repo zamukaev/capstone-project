@@ -1,16 +1,30 @@
-import { NextApiRequest, NextApiResponse } from "next";
 import dbConnect from "../../../db/connect";
-import Posts from "../../../db/models/posts";
+import Post from "../../../db/models/posts";
 
 export default async function handler(req, res) {
   await dbConnect();
   if (req.method === "GET") {
-    const posts = await Posts.find();
+    const posts = await Post.find();
     if (!posts) {
       return res.status(404).json({ message: "Not found" });
     }
     res.status(200).json(posts);
-  } else {
-    return response.status(405).json({ message: "Method not allowed" });
+  }
+
+  if (req.method === "POST") {
+    try {
+      const doc = new Post({
+        title: req.body.title,
+        description: req.body.description,
+        full_description: req.body.full_description,
+        alt: req.body.alt,
+        image: req.body.image,
+        date: new Date(),
+      });
+      const post = await doc.save();
+      res.status(201).json(post);
+    } catch (error) {
+      console.log("same error hier");
+    }
   }
 }

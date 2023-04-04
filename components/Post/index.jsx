@@ -16,7 +16,8 @@ const Post = ({ id, image, alt, title, description, full_description }) => {
         <Headline>{title}</Headline>
         <Paragraph>
           {full_description ? full_description : description}
-          {description && (
+
+          {!full_description && (
             <StyledLink margin="0px 0px 0px 5px" href={`/posts/${id}`}>
               read more...
             </StyledLink>

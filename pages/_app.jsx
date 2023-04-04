@@ -8,7 +8,7 @@ const StyledWrapper = styled.section`
   max-width: 1200px;
   margin: 0px auto;
   min-height: 100vh;
-  color: ${(props) => props.color};
+  color: ${({ theme }) => theme.colors.white};
   display: grid;
   grid-template-areas:
     "head head"
@@ -22,7 +22,7 @@ const StyledMain = styled.main`
   grid-area: main;
   display: grid;
   gap: 30px;
-  grid-template-rows: auto 1fr;
+  grid-template-rows: auto auto 1fr;
   grid-template-columns: 1fr;
   padding: 0px 20px;
 `;
@@ -36,6 +36,7 @@ export default function App({ Component, pageProps }) {
       </Head>
       <StyledWrapper>
         <StyledMain>
+          <>Heder</>
           <Component {...pageProps} />
         </StyledMain>
       </StyledWrapper>

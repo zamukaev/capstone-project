@@ -6,7 +6,7 @@ export const StyledButton = styled.button`
   align-self: ${({ self }) => self || ""};
   text-aling: center;
   font-size: ${({ size }) => size || "12px"};
-  line-height: 14px;
+  line-height: 15px;
   background: ${({ theme }) => theme?.bg_colors?.btn_primary_color};
   padding: ${({ padding }) => padding || "0px"};
   margin: ${({ margin }) => margin || "0px"};

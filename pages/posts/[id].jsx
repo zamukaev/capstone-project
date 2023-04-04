@@ -2,20 +2,27 @@ import axios from "axios";
 import Link from "next/link";
 import { Button } from "../../components/Button";
 import Post from "../../components/Post";
-import { StyledSection } from "../../components/Posts/Posts.styled";
+import { StyledSection } from "../../components/Section/Section.styled";
 
 const Detais = ({ post }) => {
   return (
     <>
-      <Button as={Link} href="/" padding="9px 15px" radius="5px">
+      <Button
+        as={Link}
+        href="/"
+        padding="9px 15px"
+        radius="5px"
+        justifySelf="start"
+      >
         Zurück
       </Button>
-      <StyledSection>
+      <StyledSection rows="auto auto 1fr">
         {post && (
           <Post
             image={post.image}
             title={post.title}
             alt={post.alt}
+            description={post.description}
             full_description={post.full_description}
           />
         )}

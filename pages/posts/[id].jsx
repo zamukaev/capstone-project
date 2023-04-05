@@ -34,12 +34,12 @@ const Detais = ({ post }) => {
 export default Detais;
 
 export const getServerSideProps = async ({ params }) => {
+
   if (!params) {
     return {
       notFound: true,
     };
   }
-  // fetch data with axios from backend
   const { data: post } = await axios.get(
     process.env.NEXT_PUBLIC_DOMAIN + `/api/posts/${params.id}`
   );

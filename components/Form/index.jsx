@@ -6,20 +6,6 @@ const Form = ({ register, handleSubmit, errors, onSubmit }) => {
   return (
     <StyledForm onSubmit={handleSubmit(onSubmit)}>
       <StyledInput
-        {...register("alt", {
-          required: true,
-          maxLength: 20,
-        })}
-        placeholder="alt"
-      />
-      {errors?.alt?.type === "required" && (
-        <Paragraph color="red">This field is required</Paragraph>
-      )}
-      {errors?.alt?.type === "maxLength" && (
-        <Paragraph color="red">Alt cannot exceed 20 characters</Paragraph>
-      )}
-
-      <StyledInput
         {...register("title", {
           required: true,
           maxLength: 50,
@@ -38,7 +24,7 @@ const Form = ({ register, handleSubmit, errors, onSubmit }) => {
           required: true,
           maxLength: 50,
         })}
-        placeholder="Kurze Beitragstext"
+        placeholder="Beschreibung"
       />
       {errors?.description?.type === "required" && (
         <Paragraph color="red">This field is required</Paragraph>
@@ -47,7 +33,7 @@ const Form = ({ register, handleSubmit, errors, onSubmit }) => {
         {...register("full_description", {
           required: true,
         })}
-        placeholder="Beitragstext"
+        placeholder="Vollständige Beschreibung"
       />
       {errors?.full_description?.type === "required" && (
         <Paragraph color="red">This field is required</Paragraph>
@@ -60,7 +46,7 @@ const Form = ({ register, handleSubmit, errors, onSubmit }) => {
         radius="5px"
         self="end"
       >
-        Beitrag beginnen
+        posten
       </Button>
     </StyledForm>
   );

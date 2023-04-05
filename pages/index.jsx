@@ -13,7 +13,7 @@ export const getServerSideProps = async (context) => {
   );
   return {
     props: {
-      posts,
+      posts: posts.reverse(),
     },
   };
 };

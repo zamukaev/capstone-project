@@ -31,7 +31,7 @@ const CreateNewPost = () => {
 
   return (
     <StyledSection rows="auto 1fr" colums="1fr" padding="25px">
-      <Headline margin="0px 0px 25px 0px">Neuer Beitrag beginnen</Headline>
+      <Headline margin="0px 0px 25px 0px">Neuer Beitrag</Headline>
       {image && <Image src={image} alt={alt} width={80} height={60} />}
       <Form
         register={register}

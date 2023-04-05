@@ -36,7 +36,7 @@ export default function App({ Component, pageProps }) {
       </Head>
       <StyledWrapper>
         <StyledMain>
-          <>Heder</>
+          <></>
           <Component {...pageProps} />
         </StyledMain>
       </StyledWrapper>

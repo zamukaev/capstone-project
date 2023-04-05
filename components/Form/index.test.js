@@ -10,20 +10,19 @@ it("renders all input fields and a submit button", () => {
     <Form handleSubmit={handleSubmit} register={register} errors={errors} />
   );
 
-  const altInput = screen.getByPlaceholderText("alt");
-  expect(altInput).toBeInTheDocument();
-
   const titleInput = screen.getByPlaceholderText("Überschrift");
   expect(titleInput).toBeInTheDocument();
 
-  const descriptionTextArea = screen.getByPlaceholderText("Kurze Beitragstext");
+  const descriptionTextArea = screen.getByPlaceholderText("Beschreibung");
   expect(descriptionTextArea).toBeInTheDocument();
 
-  const fullDescriptionTextArea = screen.getByPlaceholderText("Beitragstext");
+  const fullDescriptionTextArea = screen.getByPlaceholderText(
+    "Vollständige Beschreibung"
+  );
   expect(fullDescriptionTextArea).toBeInTheDocument();
 
   const submitButton = screen.getByRole("button", {
-    name: "Beitrag beginnen",
+    name: "posten",
   });
   expect(submitButton).toBeInTheDocument();
 });

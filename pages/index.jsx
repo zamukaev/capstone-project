@@ -3,7 +3,7 @@ import Posts from "../components/Posts";
 import { Sidebare } from "../components/Sidebare";
 
 export default function Home({ posts }) {
-  return <>{true ? <Posts posts={posts} /> : <Sidebare />}</>;
+  return <>{false ? <Posts posts={posts} /> : <Sidebare />}</>;
 }
 
 // ssr

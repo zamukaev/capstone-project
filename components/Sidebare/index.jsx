@@ -7,6 +7,7 @@ import { StyledListItem } from "../Posts/Posts.styled";
 import Image from "next/image";
 
 export const StyledTop = styled.section`
+  position: relative;
   display: grid;
   grid-template-rows: 1fr;
   grid-template-columns: auto 1fr;
@@ -43,7 +44,11 @@ export const StyledButtonsContainer = styled.section`
 
 export const Sidebare = () => {
   return (
-    <StyledSection bg={({ theme }) => theme.bg_colors.primary} shadow="none">
+    <StyledSection
+      width="100%"
+      bg={({ theme }) => theme.bg_colors.primary}
+      shadow="none"
+    >
       <StyledTop margin="0px 0px 25px 0px">
         <StyledTopContent>
           <Image src="/images/avatar.png" alt="avatar" width={95} height={95} />
@@ -84,7 +89,6 @@ export const Sidebare = () => {
       </StyledUl>
       <StyledButtonsContainer>
         <Button
-          justifySelf="start"
           type="button"
           padding="7px 13px"
           radius="5px"
@@ -94,7 +98,6 @@ export const Sidebare = () => {
           Auslogen
         </Button>
         <Button
-          justifySelf="start"
           as={Link}
           href="/create-post"
           padding="7px 13px"

@@ -33,24 +33,15 @@ const Detais = ({ post }) => {
 
 export default Detais;
 
-export async function getStaticPaths() {
-  const { data: posts } = await axios.get(
-    process.env.NEXT_PUBLIC_DOMAIN + "/api/posts"
-  );
-  return {
-    paths: posts.map((post) => ({
-      params: {
-        id: post._id,
-      },
-    })),
-    fallback: true, // can also be true or 'blocking'
-  };
-}
-
-export const getStaticProps = async ({ params }) => {
-  const { id } = params;
+export const getServerSideProps = async ({ params }) => {
+  if (!params) {
+    return {
+      notFound: true,
+    };
+  }
+  // fetch data with axios from backend
   const { data: post } = await axios.get(
-    process.env.NEXT_PUBLIC_DOMAIN + `/api/posts/${id}`
+    process.env.NEXT_PUBLIC_DOMAIN + `/api/posts/${params.id}`
   );
   return {
     props: {

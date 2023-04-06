@@ -16,7 +16,7 @@ const Detais = ({ post }) => {
       >
         Zurück
       </Button>
-      <StyledSection rows="auto auto 1fr">
+      <StyledSection rows="auto auto 1fr" colums="minmax(1fr, 500px)">
         {post && (
           <Post
             image={post.image}
@@ -34,7 +34,6 @@ const Detais = ({ post }) => {
 export default Detais;
 
 export const getServerSideProps = async ({ params }) => {
-
   if (!params) {
     return {
       notFound: true,

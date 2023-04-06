@@ -11,7 +11,7 @@ export const Theme = {
     btn_secondary_color: "#ED3024",
   },
   media: {
-    tablet: "(min-width:481px)",
+    tablet: "(min-width:694px)",
     desktop: "(min-width:1024px)",
   },
 };

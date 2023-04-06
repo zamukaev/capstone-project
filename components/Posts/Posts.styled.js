@@ -5,7 +5,14 @@ export const StyledUl = styled.ul`
   grid-template-rows: ${({ rows }) => rows || "1fr"};
   grid-template-columns: ${({ columns }) => columns || "1fr"};
   margin: ${(props) => props.margin || "0px"};
+  padding: ${(props) => props.padding || "0px"};
   gap: 15px;
+  @media${({ theme }) => theme.media?.tablet} {
+    grid-template-columns: 1fr;
+  }
+  @media${({ theme }) => theme.media?.desktop} {
+    grid-template-columns: 1fr 1fr;
+  }
 `;
 
 export const StyledListItem = styled.li`

@@ -13,7 +13,7 @@ it("renders all input fields and a submit button", () => {
   const titleInput = screen.getByPlaceholderText("Überschrift");
   expect(titleInput).toBeInTheDocument();
 
-  const descriptionTextArea = screen.getByPlaceholderText("Beschreibung");
+  const descriptionTextArea = screen.getByPlaceholderText("Kurze Beschreibung");
   expect(descriptionTextArea).toBeInTheDocument();
 
   const fullDescriptionTextArea = screen.getByPlaceholderText(

@@ -1,8 +1,8 @@
 import axios from "axios";
 import Link from "next/link";
-import { Button } from "../../components/Button";
+import { Button } from "../../components/ui/Button";
 import Post from "../../components/Post";
-import { StyledSection } from "../../components/Section/Section.styled";
+import { StyledSection } from "../../components/ui/Section/Section.styled";
 
 const Detais = ({ post }) => {
   return (
@@ -16,7 +16,7 @@ const Detais = ({ post }) => {
       >
         Zurück
       </Button>
-      <StyledSection rows="auto auto 1fr">
+      <StyledSection rows="auto auto 1fr" colums="minmax(1fr, 500px)">
         {post && (
           <Post
             image={post.image}
@@ -34,8 +34,11 @@ const Detais = ({ post }) => {
 export default Detais;
 
 export const getServerSideProps = async ({ params }) => {
-  console.log(params);
-  //fetch data with axios from backend
+  if (!params) {
+    return {
+      notFound: true,
+    };
+  }
   const { data: post } = await axios.get(
     process.env.NEXT_PUBLIC_DOMAIN + `/api/posts/${params.id}`
   );

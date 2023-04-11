@@ -5,7 +5,7 @@ const Posts = ({ posts }) => {
   return (
     <StyledUl role="list">
       {posts?.map((post) => (
-        <StyledListItem role="listitem" key={post._id}>
+        <StyledListItem radius="5px" role="listitem" key={post._id}>
           <Post
             id={post._id}
             image={post.image}

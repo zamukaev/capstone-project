@@ -1,6 +1,6 @@
 import { StyledForm, StyledInput, StyledTextArea } from "./Form.styled";
-import { Paragraph } from "../Paragraph/Paragraph";
-import { Button } from "../Button";
+import { Paragraph } from "../ui/Paragraph/Paragraph";
+import { Button } from "../ui/Button";
 
 const Form = ({ register, handleSubmit, errors, onSubmit }) => {
   return (
@@ -24,7 +24,7 @@ const Form = ({ register, handleSubmit, errors, onSubmit }) => {
           required: true,
           maxLength: 50,
         })}
-        placeholder="Beschreibung"
+        placeholder="Kurze Beschreibung"
       />
       {errors?.description?.type === "required" && (
         <Paragraph color="red">This field is required</Paragraph>

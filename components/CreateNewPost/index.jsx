@@ -3,8 +3,8 @@ import { useRouter } from "next/router";
 import { useState } from "react";
 import { useForm } from "react-hook-form";
 import axios from "axios";
-import { Headline } from "../Headline/Headline";
-import { StyledSection } from "../Section/Section.styled";
+import { Headline } from "../ui/Headline/Headline";
+import { StyledSection } from "../ui/Section/Section.styled";
 import Form from "../Form";
 
 const CreateNewPost = () => {
@@ -31,7 +31,7 @@ const CreateNewPost = () => {
 
   return (
     <StyledSection rows="auto 1fr" colums="1fr" padding="25px">
-      <Headline margin="0px 0px 25px 0px">Neuer Beitrag</Headline>
+      <Headline margin="0px 0px 25px 0px">Neuer Beitrag erstellen</Headline>
       {image && <Image src={image} alt={alt} width={80} height={60} />}
       <Form
         register={register}

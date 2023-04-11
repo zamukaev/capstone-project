@@ -1,8 +1,9 @@
 import axios from "axios";
 import Posts from "../components/Posts";
+import { Sidebare } from "../components/Sidebare";
 
 export default function Home({ posts }) {
-  return <Posts posts={posts} />;
+  return <>{true ? <Posts posts={posts} /> : <Sidebare />}</>;
 }
 
 // ssr

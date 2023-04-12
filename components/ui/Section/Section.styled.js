@@ -1,7 +1,8 @@
 import styled from "styled-components";
 export const StyledSection = styled.section`
-  width: ${({ width }) => width};
+  max-width: ${({ width }) => width};
   display: grid;
+  justify-content: ${({ jsc }) => jsc || ""};
   grid-template-rows: ${({ rows }) => rows || "1fr"};
   grid-template-columns: ${({ colums }) => colums || "1fr"};
   background: ${({ theme, bg }) => bg || theme?.bg_colors?.secondary};

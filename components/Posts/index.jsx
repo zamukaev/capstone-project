@@ -11,7 +11,7 @@ const Posts = ({ posts }) => {
           )
         : posts
       ).map((post) => (
-        <StyledListItem radius="5px" role="listitem" key={post._id}>
+        <StyledListItem gap="15px" radius="5px" role="listitem" key={post._id}>
           <Post
             id={post._id}
             image={post.image}

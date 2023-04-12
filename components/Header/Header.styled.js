@@ -2,26 +2,29 @@ import styled, { css } from "styled-components";
 import Link from "next/link";
 
 export const StyledHeader = styled.header`
-  display:flex;
-  align-items: center;
-  position:fixed;
-  top:0px;
-  left:0;
-  width:100vw;
-  height:40px;
+  display: grid;
+  grid-template-rows: 1fr;
+  grid-template-columns: auto 1fr;
+  position: fixed;
+  top: 0px;
+  left: 0;
+  width: 100vw;
+  height: 40px;
   grid-area: head;
-  margin-bottom:40px
-  color: red;
-  background:#0D0D0D;
-  z-index:10;
+  margin-bottom: 40px;
+  background: #0d0d0d;
+  z-index: 10;
   box-shadow: 0px 15px 25px rgba(0, 0, 0, 0.35);
+  @media${({ theme }) => theme.media.tablet} {
+    grid-template-columns: 1fr 30%;
+  } ;
 `;
 export const StyledBurger = styled.div`
   padding: 20px 40px 20px 15px;
   position: relative;
   @media${({ theme }) => theme.media.tablet} {
     display: none;
-  }
+  } ;
 `;
 export const StyledBurgerLine = styled.span`
   ${({ active }) => {
@@ -107,7 +110,7 @@ export const StyledBurgerLine2 = styled.span`
 export const StyledNav = styled.nav`
   display: none;
   @media${({ theme }) => theme.media.tablet} {
-    flex: 0 1 25%;
+    align-self: center;
     margin-left: 270px;
     display: block;
   }

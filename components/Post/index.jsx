@@ -1,5 +1,5 @@
-import { Headline } from "../ui/Headline/Headline";
-import { Paragraph } from "../ui/Paragraph/Paragraph";
+import { Headline } from "../ui/Headline/Headline.styled";
+import { Paragraph } from "../ui/Paragraph/Paragraph.styled";
 import { StyledContent, StyledImage } from "./Post.styled";
 import { StyledLink } from "./Post.styled";
 
@@ -9,8 +9,8 @@ const Post = ({ id, image, alt, title, description, full_description }) => {
       <StyledImage
         src={image ? image : "/no_image.png"}
         alt={alt ? alt : "photo of image"}
-        width={370}
-        height={150}
+        width={770}
+        height={200}
         radius="5px 5px 0px 0px"
       />
       <StyledContent padding="0px 10px">

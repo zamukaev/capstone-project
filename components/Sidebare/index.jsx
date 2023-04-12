@@ -1,95 +1,51 @@
 import Link from "next/link";
-import styled from "styled-components";
-import { StyledUl } from "../Posts/Posts.styled";
+import Image from "next/image";
+import { useState, useEffect } from "react";
+
 import { Button } from "../ui/Button";
 import { StyledListItem } from "../Posts/Posts.styled";
-import Image from "next/image";
-export const StyledSidebareContainer = styled.section`
-  height: 100vh;
-  position: absolute;
-  opacity: -500px;
-  visibility: hidden;
-  left: 0px;
-  padding: 10px;
-  grid-area: sidebare;
-  width: ${({ width }) => width};
-  display: grid;
-  grid-template-rows: ${({ rows }) => rows || "1fr"};
-  grid-template-columns: ${({ colums }) => colums || "1fr"};
-  background: ${({ theme, bg }) => bg || theme?.bg_colors?.secondary};
-  box-shadow: ${({ shadow }) => shadow || "0px 15px 25px rgba(0, 0, 0, 0.35)"};
-  border-radius: 5px;
-  padding: ${(props) => props.padding || "0px"};
-  margin: ${(props) => props.margin || "0px"};
-  gap: 15px;
+import { useBurgerMenuStore } from "../../zustand/store";
 
-  @media${({ theme }) => theme.media.tablet} {
-    height: 100vh;
-    opacity: 1;
-    visibility: visible;
-    left: 0;
-  } ;
-`;
-export const StyledTop = styled.section`
-  position: relative;
-  display: grid;
-  grid-template-rows: 1fr;
-  grid-template-columns: auto 1fr;
-  height: 165px;
-  margin: ${({ margin }) => margin};
-  background-size: 100% 100px;
-  background: url("./images/bg.png") no-repeat;
-  border-bottom: 1px solid ${({ theme }) => theme.bg_colors.secondary};
-`;
-export const StyledTopContent = styled.div`
-  align-self: end;
-  display: grid;
-  grid-template-columns: auto 1fr;
-  gap: 5px;
-`;
-export const StyledInfos = styled.div`
-  align-self: center;
-  display: grid;
-  grid-template-columns: 1fr;
-  gap: 5px;
-`;
-export const StyledAvatar = styled(Image)`
-  align-self: end;
-`;
-export const StyledSpan = styled.span`
-  color: ${({ color, theme }) => color || theme.colors.white};
-`;
-export const StyledButtonsContainer = styled.section`
-  padding: 10px;
-  display: grid;
-  grid-template-rows: 1fr;
-  grid-template-columns: auto 1fr;
-  margin-top: 20px;
-`;
-
-export const StyledSidebareUl = styled.ul`
-  display: grid;
-  grid-template-rows: ${({ rows }) => rows || "1fr"};
-  grid-template-columns: ${({ columns }) => columns || "1fr"};
-  margin: ${(props) => props.margin || "0px"};
-  padding: ${(props) => props.padding || "0px"};
-  gap: 15px;
-`;
+import {
+  StyledSidebareContainer,
+  StyledTop,
+  StyledTopContent,
+  StyledInfos,
+  StyledSpan,
+  StyledSidebareUl,
+  StyledButtonsContainer,
+  ListItem,
+  StyledLink,
+} from "./Sidebare.styled";
 
 export const Sidebare = () => {
+  const [windowWidth, setWindowWidth] = useState(() => {
+    if (typeof window !== "undefined") {
+      return [window.innerWidth, window.innerHeight];
+    }
+  });
+
+  useEffect(() => {
+    const handleWindowResize = () => {
+      setWindowWidth([window.innerWidth, window.innerHeight]);
+    };
+
+    window.addEventListener("resize", handleWindowResize);
+    return () => {
+      window.removeEventListener("resize", handleWindowResize);
+    };
+  });
+
+  const { isActive, setIsActive } = useBurgerMenuStore((state) => state);
+
   return (
-    <StyledSidebareContainer
-      width="100%"
-      bg={({ theme }) => theme.bg_colors.secondary}
-      shadow="none"
-      rows=" auto  auto  auto 1fr"
-    >
+    <StyledSidebareContainer active={isActive && "active"}>
       <StyledTop margin="0px 0px 25px 0px">
         <StyledTopContent>
           <Image src="/images/avatar.png" alt="avatar" width={95} height={95} />
           <StyledInfos>
             <StyledSpan>name</StyledSpan>
-            <StyledSpan color={({ theme }) => theme.colors.light_white}>
+            <StyledSpan clr={({ theme }) => theme.colors.light_white}>
               title
             </StyledSpan>
           </StyledInfos>
@@ -101,6 +57,9 @@ export const Sidebare = () => {
         padding="0px 10px 0px 10px"
         columns="100px"
       >
+        <ListItem onClick={setIsActive}>
+          <StyledLink href="/">Home</StyledLink>
+        </ListItem>
         <StyledListItem
           shadow="none"
           bg="none"
@@ -138,6 +97,7 @@ export const Sidebare = () => {
         </Button>
         <Button
           as={Link}
+          onClick={windowWidth && windowWidth[0] < 694 && setIsActive}
           href="/create-post"
           padding="7px 13px"
           radius="5px"

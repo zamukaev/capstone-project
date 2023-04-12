@@ -1,5 +1,5 @@
 import { StyledForm, StyledInput, StyledTextArea } from "./Form.styled";
-import { Paragraph } from "../ui/Paragraph/Paragraph";
+import { Paragraph } from "../ui/Paragraph/Paragraph.styled";
 import { Button } from "../ui/Button";
 
 const Form = ({ register, handleSubmit, errors, onSubmit }) => {

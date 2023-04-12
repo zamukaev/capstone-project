@@ -1,11 +1,9 @@
 import styled from "styled-components";
 
 export const StyledForm = styled.form`
-justify-self:{
-  center;
-}
   display: flex;
   flex-direction: column;
+  max-width: 1000px;
 `;
 export const StyledInput = styled.input`
   padding: 10px;

@@ -6,7 +6,8 @@ export const StyledUl = styled.ul`
   grid-template-columns: ${({ columns }) => columns || "1fr"};
   margin: ${(props) => props.margin || "0px"};
   padding: ${(props) => props.padding || "0px"};
-  gap: 15px;
+  gap: 30px;
+
   @media${({ theme }) => theme.media?.tablet} {
     grid-template-columns: 1fr;
   }
@@ -19,7 +20,7 @@ export const StyledListItem = styled.li`
   display: grid;
   grid-template-rows: ${({ rows }) => rows || " auto auto 1fr"};
   grid-template-columns: ${({ columns }) => columns || "1fr"};
-  gap: ${({ gap }) => gap || "15px"};
+  gap: ${({ gap }) => gap || "30px"};
   padding: ${(props) => props.padding || "0px"};
   margin: ${(props) => props.margin || "0px"};
   background: ${({ theme, bg }) => bg || theme?.bg_colors?.secondary};

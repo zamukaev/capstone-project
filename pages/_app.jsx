@@ -1,13 +1,16 @@
 import GlobalStyle from "../styles";
-import { ThemeProvider } from "styled-components";
+import { ThemeProvider, css } from "styled-components";
 import Head from "next/head";
 import { Theme } from "../theme/theme";
 import styled from "styled-components";
 import { Sidebare } from "../components/Sidebare";
+import { Header, StyledHeader } from "../components/Header";
+import { useBurgerMenuStore } from "../zustand/store";
+import { useEffect } from "react";
 
 const StyledWrapper = styled.section`
   position: relative;
-  max-width: 1200px;
+
   margin: 0px auto;
   min-height: 100vh;
   color: ${({ theme }) => theme.colors.white};
@@ -24,24 +27,39 @@ const StyledWrapper = styled.section`
       "sidebare main"
       "sidebare footer";
     grid-template-columns: 250px 1fr;
-    grid-template-rows: 50px 1fr 50px;
+    grid-template-rows: 40px 1fr 40px;
   }
 `;
 
 const StyledMain = styled.main`
-  grid-area: main;
-  display: grid;
-  gap: 30px;
-  grid-template-rows: auto 1fr 1fr;
-  grid-template-columns: 1fr;
-  padding: 0px 20px;
-`;
-
-const StyledHeader = styled.header`
-  grid-area: head;
+  ${({ active }) => {
+    return active
+      ? css`
+          display: none;
+        `
+      : css`
+          grid-area: main;
+          display: grid;
+          gap: 30px;
+          grid-template-rows: auto 1fr 1fr;
+          grid-template-columns: 1fr;
+          padding: 0px 20px;
+          margin-top: 20px;
+        `;
+  }};
 `;
 
 export default function App({ Component, pageProps }) {
+  const isActive = useBurgerMenuStore((state) => state.isActive);
+
+  useEffect(() => {
+    if (isActive) {
+      document.body.style.overflow = "hidden";
+    } else {
+      document.body.style.overflow = "scroll";
+    }
+  }, [isActive]);
+
   return (
     <ThemeProvider theme={Theme}>
       <GlobalStyle />
@@ -49,8 +67,8 @@ export default function App({ Component, pageProps }) {
         <title>Capstone Project</title>
       </Head>
       <StyledWrapper>
-        <StyledHeader></StyledHeader>
-        <Sidebare></Sidebare>
+        <Header />
+        <Sidebare />
         <StyledMain>
           <Component {...pageProps} />
         </StyledMain>

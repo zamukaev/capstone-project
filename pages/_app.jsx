@@ -52,7 +52,14 @@ const StyledMain = styled.main`
 export default function App({ Component, pageProps }) {
   const isActive = useBurgerMenuStore((state) => state.isActive);
 
-  useEffect(() => {}, [isActive]);
+  useEffect(() => {
+    if (isActive) {
+      document.body.style.overflow = "hidden";
+    } else {
+      document.body.style.overflow = "scroll";
+    }
+  }, [isActive]);
+
   return (
     <ThemeProvider theme={Theme}>
       <GlobalStyle />

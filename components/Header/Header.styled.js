@@ -14,16 +14,16 @@ export const StyledHeader = styled.header`
   color: red;
   background:#0D0D0D;
   z-index:10;
- 
+  box-shadow: 0px 15px 25px rgba(0, 0, 0, 0.35);
 `;
 export const StyledBurger = styled.div`
-  padding: 20px;
+  padding: 20px 40px 20px 15px;
   position: relative;
   @media${({ theme }) => theme.media.tablet} {
     display: none;
   }
 `;
-export const StyledSpan1 = styled.span`
+export const StyledBurgerLine = styled.span`
   ${({ active }) => {
     return active
       ? css`
@@ -74,7 +74,7 @@ export const StyledSpan1 = styled.span`
         `;
   }}
 `;
-export const StyledSpan2 = styled.span`
+export const StyledBurgerLine2 = styled.span`
   ${({ active }) => {
     return active
       ? css`

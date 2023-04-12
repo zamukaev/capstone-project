@@ -39,13 +39,7 @@ export const Sidebare = () => {
   const { isActive, setIsActive } = useBurgerMenuStore((state) => state);
 
   return (
-    <StyledSidebareContainer
-      width="100%"
-      bg={({ theme }) => theme.bg_colors.secondary}
-      shadow="none"
-      rows=" auto  auto  auto 1fr"
-      active={isActive && "active"}
-    >
+    <StyledSidebareContainer active={isActive && "active"}>
       <StyledTop margin="0px 0px 25px 0px">
         <StyledTopContent>
           <Image src="/images/avatar.png" alt="avatar" width={95} height={95} />
@@ -103,7 +97,7 @@ export const Sidebare = () => {
         </Button>
         <Button
           as={Link}
-          onClick={windowWidth < 694 && setIsActive}
+          onClick={windowWidth && windowWidth[0] < 694 && setIsActive}
           href="/create-post"
           padding="7px 13px"
           radius="5px"

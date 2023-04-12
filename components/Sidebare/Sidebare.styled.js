@@ -8,12 +8,12 @@ export const StyledSidebareContainer = styled.section`
   left: 0;
   padding: 10px;
   grid-area: sidebare;
-  width: ${({ width }) => width};
+  width: 100%;
   display: grid;
-  grid-template-rows: ${({ rows }) => rows || "1fr"};
+  grid-template-rows: auto auto auto 1fr;
   grid-template-columns: ${({ colums }) => colums || "1fr"};
-  background: ${({ theme, bg }) => bg || theme?.bg_colors?.secondary};
-  box-shadow: ${({ shadow }) => shadow || "0px 15px 25px rgba(0, 0, 0, 0.35)"};
+  background: ${({ theme }) => theme?.bg_colors?.secondary};
+  box-shadow: 0px 15px 25px rgba(0, 0, 0, 0.35);
   border-radius: 5px;
   padding: ${(props) => props.padding || "0px"};
   margin: ${(props) => props.margin || "0px"};

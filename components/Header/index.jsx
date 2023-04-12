@@ -1,8 +1,8 @@
 import {
   StyledHeader,
   StyledBurger,
-  StyledSpan1,
-  StyledSpan2,
+  StyledBurgerLine,
+  StyledBurgerLine2,
   StyledNav,
   StyledMenu,
   StyledMenuItem,
@@ -16,18 +16,13 @@ export const Header = () => {
 
   const openBurgerMenuHandler = () => {
     setIsActive();
-    if (isActive) {
-      document.body.style.overflow = "hidden";
-    } else {
-      document.body.style.overflow = "scroll";
-    }
   };
 
   return (
     <StyledHeader>
       <StyledBurger onClick={openBurgerMenuHandler}>
-        <StyledSpan1 active={isActive && "active"}></StyledSpan1>
-        <StyledSpan2 active={isActive && "active"}></StyledSpan2>
+        <StyledBurgerLine active={isActive && "active"}></StyledBurgerLine>
+        <StyledBurgerLine2 active={isActive && "active"}></StyledBurgerLine2>
       </StyledBurger>
       <StyledNav>
         <StyledMenu>

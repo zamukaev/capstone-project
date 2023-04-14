@@ -37,7 +37,11 @@ const StyledEditIcon = styled(FaRegEdit)`
 
 const Detais = ({ post }) => {
   const router = useRouter();
-  const [isEdit, setIsEdit] = useState(false);
+  const [isEditing, setIsEditing] = useState(false);
+
+  const handleIsEditing = () => {
+    setIsEditing(!isEditing);
+  };
 
   const deletePostHandler = async (postId) => {
     try {
@@ -50,8 +54,12 @@ const Detais = ({ post }) => {
     }
   };
 
-  return isEdit ? (
-    <CreateNewPost post={post} isEdit={isEdit} setIsEdit={setIsEdit} />
+  return isEditing ? (
+    <CreateNewPost
+      post={post}
+      isEditing={isEditing}
+      onHandleIsEditing={handleIsEditing}
+    />
   ) : (
     <>
       <Button
@@ -73,7 +81,7 @@ const Detais = ({ post }) => {
             onClick={() => deletePostHandler(post._id)}
             size="25px"
           />
-          <StyledEditIcon onClick={() => setIsEdit(!isEdit)} size="25px" />
+          <StyledEditIcon onClick={handleIsEditing} size="25px" />
         </StyledEditAndDeletMode>
         {post && (
           <Post

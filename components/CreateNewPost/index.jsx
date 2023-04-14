@@ -8,7 +8,7 @@ import { Headline } from "../ui/Headline/Headline.styled";
 import Form from "../Form";
 import { StyledFormSection } from "./CreateNewPost.styled";
 
-const CreateNewPost = ({ post, isEdit, setIsEdit }) => {
+const CreateNewPost = ({ post, isEditing, onHandleIsEditing }) => {
   const router = useRouter();
   const [image, setImage] = useState("");
 
@@ -19,9 +19,9 @@ const CreateNewPost = ({ post, isEdit, setIsEdit }) => {
     formState: { errors },
   } = useForm({
     defaultValues: {
-      title: isEdit ? post.title : "",
-      description: isEdit ? post.description : "",
-      full_description: isEdit ? post.full_description : "",
+      title: isEditing ? post.title : "",
+      description: isEditing ? post.description : "",
+      full_description: isEditing ? post.full_description : "",
     },
   });
 
@@ -31,7 +31,7 @@ const CreateNewPost = ({ post, isEdit, setIsEdit }) => {
       ...fromData,
     };
     try {
-      const { data } = isEdit
+      const { data } = isEditing
         ? await axios.put(
             process.env.NEXT_PUBLIC_DOMAIN + `/api/posts/${post._id}`,
             newObject
@@ -40,7 +40,8 @@ const CreateNewPost = ({ post, isEdit, setIsEdit }) => {
             process.env.NEXT_PUBLIC_DOMAIN + "/api/posts",
             newObject
           );
-      setIsEdit && setIsEdit(!isEdit);
+
+      onHandleIsEditing && onHandleIsEditing();
 
       router.push(`/posts/${data._id}`);
     } catch (error) {

@@ -5,7 +5,7 @@ export const Theme = {
     light_gray: "#757575",
   },
   bg_colors: {
-    primary: "#181818;",
+    primary: "#181818",
     secondary: "#202020;",
     btn_primary_color: "#3137C9",
     btn_secondary_color: "#ED3024",

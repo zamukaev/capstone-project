@@ -8,8 +8,9 @@ import {
   StyledMenuItem,
   StyledLink,
 } from "./Header.styled";
-import { useBurgerMenuStore } from "../../zustand/store";
 import { Search } from "../Search";
+
+import { useBurgerMenuStore } from "../../zustand/store";
 
 export const Header = () => {
   const { isActive, setIsActive } = useBurgerMenuStore((state) => state);

@@ -1,6 +1,6 @@
 import React from "react";
 import { render, screen, fireEvent } from "@testing-library/react";
-import Form from ".";
+import { Form } from ".";
 
 it("renders all input fields and a submit button", () => {
   const handleSubmit = jest.fn();

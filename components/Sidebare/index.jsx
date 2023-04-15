@@ -4,8 +4,6 @@ import { useState, useEffect } from "react";
 
 import { Button } from "../ui/Button";
 import { StyledListItem } from "../Posts/Posts.styled";
-import { useBurgerMenuStore } from "../../zustand/store";
-
 import {
   StyledSidebareContainer,
   StyledTop,
@@ -17,6 +15,8 @@ import {
   ListItem,
   StyledLink,
 } from "./Sidebare.styled";
+
+import { useBurgerMenuStore } from "../../zustand/store";
 
 export const Sidebare = () => {
   const [windowWidth, setWindowWidth] = useState(() => {

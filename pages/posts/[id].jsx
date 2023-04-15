@@ -1,28 +1,25 @@
-import axios from "axios";
 import Link from "next/link";
-import { Button } from "../../components/ui/Button";
+import Head from "next/head";
+import { useRouter } from "next/router";
+import { useState } from "react";
+
 import Post from "../../components/Post";
+import CreateNewPost from "../../components/CreateNewPost";
+
+import { Button } from "../../components/ui/Button";
 import { StyledSection } from "../../components/ui/Section/Section.styled";
 
 import { MdDeleteForever } from "react-icons/md";
 import { FaRegEdit } from "react-icons/fa";
 
-import { useRouter } from "next/router";
+import axios from "axios";
 
 import styled from "styled-components";
-import { useState } from "react";
-import CreateNewPost from "../../components/CreateNewPost";
 
 const StyledEditAndDeletMode = styled.div`
   position: absolute;
   top: 5px;
   right: 5px;
-  opacity: 0;
-  transition: all 0.3s ease-out;
-  &:hover {
-    transition: all 0.3s ease-out;
-    opacity: 1;
-  }
 `;
 
 const StyledDeleteIcon = styled(MdDeleteForever)`
@@ -62,6 +59,9 @@ const Detais = ({ post }) => {
     />
   ) : (
     <>
+      <Head>
+        <title>Posts</title>
+      </Head>
       <Button
         as={Link}
         href="/"

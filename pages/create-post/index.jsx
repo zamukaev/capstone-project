@@ -1,6 +1,14 @@
+import Head from "next/head";
 import CreateNewPost from "../../components/CreateNewPost";
 
 const CreatePost = () => {
-  return <CreateNewPost />;
+  return (
+    <>
+      <Head>
+        <title>create-post</title>
+      </Head>
+      <CreateNewPost />
+    </>
+  );
 };
 export default CreatePost;

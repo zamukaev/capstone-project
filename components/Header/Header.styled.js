@@ -20,6 +20,7 @@ export const StyledHeader = styled.header`
   } ;
 `;
 export const StyledBurger = styled.div`
+  cursor: pointer;
   padding: 20px 40px 20px 15px;
   position: relative;
   @media${({ theme }) => theme.media.tablet} {

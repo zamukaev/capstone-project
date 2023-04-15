@@ -1,11 +1,16 @@
-import axios from "axios";
+import Head from "next/head";
 import Posts from "../components/Posts";
 import { Sidebare } from "../components/Sidebare";
 
-export default function Home({ posts }) {
-  return <>{true ? <Posts posts={posts} /> : <Sidebare />}</>;
-}
+import axios from "axios";
 
+export default function Home({ posts }) {
+  return (
+    <>
+      <Posts posts={posts} />
+    </>
+  );
+}
 // ssr
 export const getServerSideProps = async (context) => {
   // fetch data with axios from backend

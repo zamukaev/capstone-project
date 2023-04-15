@@ -4,13 +4,12 @@ import Head from "next/head";
 import { Theme } from "../theme/theme";
 import styled from "styled-components";
 import { Sidebare } from "../components/Sidebare";
-import { Header, StyledHeader } from "../components/Header";
+import { Header } from "../components/Header";
 import { useBurgerMenuStore } from "../zustand/store";
 import { useEffect } from "react";
 
 const StyledWrapper = styled.section`
   position: relative;
-
   margin: 0px auto;
   min-height: 100vh;
   color: ${({ theme }) => theme.colors.white};

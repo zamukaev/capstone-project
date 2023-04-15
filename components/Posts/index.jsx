@@ -1,8 +1,10 @@
 import Post from "../Post";
 import { StyledUl, StyledListItem } from "./Posts.styled";
+
 import { useSearchValue } from "../../zustand/store";
+
 const Posts = ({ posts }) => {
-  const { searchValue, setSearchValue } = useSearchValue((state) => state);
+  const { searchValue } = useSearchValue((state) => state);
   return (
     <StyledUl role="list">
       {(searchValue

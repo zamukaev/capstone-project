@@ -1,12 +1,14 @@
 import Image from "next/image";
 import { useRouter } from "next/router";
 import { useState } from "react";
-import { useForm } from "react-hook-form";
-import axios from "axios";
-import { Headline } from "../ui/Headline/Headline.styled";
 
-import Form from "../Form";
+import { Form } from "../Form";
+import { Headline } from "../ui/Headline/Headline.styled";
 import { StyledFormSection } from "./CreateNewPost.styled";
+
+import { useForm } from "react-hook-form";
+
+import axios from "axios";
 
 const CreateNewPost = ({ post, isEditing, onHandleIsEditing }) => {
   const router = useRouter();

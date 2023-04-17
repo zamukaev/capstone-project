@@ -6,10 +6,10 @@ import { useState } from "react";
 
 import Post from "../../components/Post";
 import CreateNewPost from "../../components/CreateNewPost";
-
+import Popup from "../../components/Popup";
 import { Button } from "../../components/ui/Button";
 import { StyledSection } from "../../components/ui/Section/Section.styled";
-import { Popup } from "../../components/popup";
+
 import { MdDeleteForever } from "react-icons/md";
 import { FaRegEdit } from "react-icons/fa";
 

@@ -52,7 +52,7 @@ export const StyledButtonsContainer = styled.div`
   justify-content: end;
 `;
 
-export const Popup = ({ onDeletePost }) => {
+const Popup = ({ onDeletePost }) => {
   const { isPopupOpening, setIsPopupOpening } = usePostDeletePopup(
     (state) => state
   );
@@ -90,3 +90,4 @@ export const Popup = ({ onDeletePost }) => {
     </StyledPopupWrapper>
   );
 };
+export default Popup;

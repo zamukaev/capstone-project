@@ -8,6 +8,7 @@ export const StyledImage = styled(Image)`
 `;
 
 export const StyledContent = styled.div`
+  position: relative;
   display: grid;
   grid-template-rows: 1fr;
   grid-template-columns: 1fr;

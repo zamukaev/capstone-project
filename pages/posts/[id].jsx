@@ -12,7 +12,7 @@ import { StyledSection } from "../../components/ui/Section/Section.styled";
 import { MdDeleteForever } from "react-icons/md";
 import { FaRegEdit } from "react-icons/fa";
 
-import axios from "axios";
+import postsApi from "../../api/index";
 
 import styled from "styled-components";
 
@@ -42,9 +42,7 @@ const Detais = ({ post }) => {
 
   const deletePostHandler = async (postId) => {
     try {
-      await axios.delete(
-        process.env.NEXT_PUBLIC_DOMAIN + `/api/posts/${postId}`
-      );
+      postsApi.deletePost(postId);
       router.push("/");
     } catch (error) {
       console.log(error);
@@ -106,9 +104,7 @@ export const getServerSideProps = async ({ params }) => {
     };
   }
 
-  const { data: post } = await axios.get(
-    process.env.NEXT_PUBLIC_DOMAIN + `/api/posts/${params.id}`
-  );
+  const { data: post } = await postsApi.getPostById(params.id);
 
   return {
     props: {

@@ -2,7 +2,13 @@ import { StyledForm, StyledInput, StyledTextArea } from "./Form.styled";
 import { Paragraph } from "../ui/Paragraph/Paragraph.styled";
 import { Button } from "../ui/Button";
 
-export const Form = ({ register, handleSubmit, errors, onSubmit }) => {
+export const Form = ({
+  register,
+  handleSubmit,
+  errors,
+  onSubmit,
+  isEditing,
+}) => {
   return (
     <StyledForm onSubmit={handleSubmit(onSubmit)}>
       <StyledInput
@@ -46,7 +52,7 @@ export const Form = ({ register, handleSubmit, errors, onSubmit }) => {
         radius="5px"
         self="end"
       >
-        posten
+        {isEditing ? "speichern" : "posten"}
       </Button>
     </StyledForm>
   );

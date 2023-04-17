@@ -60,6 +60,7 @@ const CreateNewPost = ({ post, isEditing, onHandleIsEditing }) => {
         handleSubmit={handleSubmit}
         errors={errors}
         onSubmit={onSubmit}
+        isEditing={isEditing}
       />
     </StyledFormSection>
   );

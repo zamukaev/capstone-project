@@ -88,7 +88,7 @@ export const Sidebare = () => {
       <StyledButtonsContainer>
         <Button
           type="button"
-          padding="7px 13px"
+          padding="10px 13px"
           radius="5px"
           bgcolor={({ theme }) => theme.bg_colors.btn_secondary_color}
           margin="0px 15px 0px 0px"
@@ -99,7 +99,7 @@ export const Sidebare = () => {
           as={Link}
           onClick={windowWidth && windowWidth[0] < 694 && setIsActive}
           href="/create-post"
-          padding="7px 13px"
+          padding="10px 13px"
           radius="5px"
           bgcolor={({ theme }) => theme.bg_colors.btn_primary_color}
         >

@@ -1,13 +1,21 @@
 import { useSearchValue } from "../../zustand/store";
-import { StyledInput } from "./Search.styled";
+import {
+  StyledIcon,
+  StyledInput,
+  StyledSearchContainer,
+} from "./Search.styled";
+
 export const Search = () => {
   const { searchValue, setSearchValue } = useSearchValue((state) => state);
 
   return (
-    <StyledInput
-      onChange={(event) => setSearchValue(event.target.value)}
-      value={searchValue}
-      placeholder="search..."
-    />
+    <StyledSearchContainer>
+      <StyledInput
+        onChange={(event) => setSearchValue(event.target.value)}
+        value={searchValue}
+        placeholder="Search..."
+      />
+      {searchValue && <StyledIcon onClick={() => setSearchValue("")} />}
+    </StyledSearchContainer>
   );
 };

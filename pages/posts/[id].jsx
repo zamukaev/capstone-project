@@ -1,16 +1,19 @@
 import Link from "next/link";
 import Head from "next/head";
+
 import { useRouter } from "next/router";
 import { useState } from "react";
 
 import Post from "../../components/Post";
 import CreateNewPost from "../../components/CreateNewPost";
-
+import Popup from "../../components/Popup";
 import { Button } from "../../components/ui/Button";
 import { StyledSection } from "../../components/ui/Section/Section.styled";
 
 import { MdDeleteForever } from "react-icons/md";
 import { FaRegEdit } from "react-icons/fa";
+
+import { usePostDeletePopup } from "../../zustand/store";
 
 import axios from "axios";
 
@@ -35,20 +38,25 @@ const StyledEditIcon = styled(FaRegEdit)`
 const Detais = ({ post }) => {
   const router = useRouter();
   const [isEditing, setIsEditing] = useState(false);
+  const { isPopupOpening, setIsPopupOpening, isPostDeleting } =
+    usePostDeletePopup((state) => state);
 
   const handleIsEditing = () => {
     setIsEditing(!isEditing);
   };
-
-  const deletePostHandler = async (postId) => {
+  const handleDeletePost = async () => {
     try {
       await axios.delete(
-        process.env.NEXT_PUBLIC_DOMAIN + `/api/posts/${postId}`
+        process.env.NEXT_PUBLIC_DOMAIN + `/api/posts/${post._id}`
       );
       router.push("/");
     } catch (error) {
       console.log(error);
     }
+    console.log("delete");
+  };
+  const handleDeletePostPopupOpen = () => {
+    setIsPopupOpening(true);
   };
 
   return isEditing ? (
@@ -62,6 +70,7 @@ const Detais = ({ post }) => {
       <Head>
         <title>Posts</title>
       </Head>
+      <Popup onDeletePost={handleDeletePost} />
       <Button
         as={Link}
         href="/"
@@ -77,10 +86,7 @@ const Detais = ({ post }) => {
         colums="minmax(1fr, 500px)"
       >
         <StyledEditAndDeletMode>
-          <StyledDeleteIcon
-            onClick={() => deletePostHandler(post._id)}
-            size="25px"
-          />
+          <StyledDeleteIcon onClick={handleDeletePostPopupOpen} size="25px" />
           <StyledEditIcon onClick={handleIsEditing} size="25px" />
         </StyledEditAndDeletMode>
         {post && (

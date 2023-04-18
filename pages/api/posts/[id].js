@@ -6,19 +6,15 @@ export default async function handler(req, res) {
   const { id } = req.query;
 
   if (req.method === "GET") {
-    try {
-      const post = await Post.findByIdAndUpdate(
-        id,
-        { $inc: { view: 1 } },
-        { returnDocument: "after" }
-      );
-      if (!post) {
-        return res.status(404).json({ message: "Not found" });
-      }
-      return res.status(200).json(post);
-    } catch (error) {
-      return res.status(500).json(error);
+    const post = await Post.findByIdAndUpdate(
+      id,
+      { $inc: { view: 1 } },
+      { returnDocument: "after" }
+    );
+    if (!post) {
+      return res.status(404).json({ message: "Not found" });
     }
+    return res.status(200).json(post);
   }
 
   if (req.method === "DELETE") {

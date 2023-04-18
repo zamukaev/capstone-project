@@ -8,7 +8,7 @@ export const StyledSidebareContainer = styled.section`
   left: 0;
   padding: 10px;
   grid-area: sidebare;
-  width: 100%;
+  width: 240px;
   display: grid;
   grid-template-rows: auto auto auto 1fr;
   grid-template-columns: ${({ colums }) => colums || "1fr"};

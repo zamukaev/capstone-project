@@ -34,20 +34,8 @@ const StyledEditIcon = styled(FaRegEdit)`
   cursor: pointer;
   color: #8338ec;
 `;
-export const post = [
-  {
-    _id: "643d60af6a3bd835e2073538",
-    title: "Lorem ipsum dolor sit amet,",
-    description: "kjbkj",
-    full_description:
-      "Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet.",
-    image: "/images/Bildschirmfoto 2023-04-14 um 16.26.36.png",
-    date: "2023-04-17T15:07:27.303Z",
-    view: 5,
-    __v: 0,
-  },
-];
-const Detais = () => {
+
+const Detais = ({ post }) => {
   const router = useRouter();
   const [isEditing, setIsEditing] = useState(false);
   const { setIsPopupOpening, isPostDeleting } = usePostDeletePopup(
@@ -114,3 +102,19 @@ const Detais = () => {
 };
 
 export default Detais;
+
+export const getServerSideProps = async ({ params }) => {
+  if (!params) {
+    return {
+      notFound: true,
+    };
+  }
+
+  const { data: post } = await postsApi.getPostById(params.id);
+
+  return {
+    props: {
+      post,
+    },
+  };
+};

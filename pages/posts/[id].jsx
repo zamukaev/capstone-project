@@ -15,7 +15,7 @@ import { FaRegEdit } from "react-icons/fa";
 
 import { usePostDeletePopup } from "../../zustand/store";
 
-import axios from "axios";
+import postsApi from "../../api/index";
 
 import styled from "styled-components";
 
@@ -38,22 +38,20 @@ const StyledEditIcon = styled(FaRegEdit)`
 const Detais = ({ post }) => {
   const router = useRouter();
   const [isEditing, setIsEditing] = useState(false);
-  const { isPopupOpening, setIsPopupOpening, isPostDeleting } =
-    usePostDeletePopup((state) => state);
+  const { setIsPopupOpening, isPostDeleting } = usePostDeletePopup(
+    (state) => state
+  );
 
   const handleIsEditing = () => {
     setIsEditing(!isEditing);
   };
   const handleDeletePost = async () => {
     try {
-      await axios.delete(
-        process.env.NEXT_PUBLIC_DOMAIN + `/api/posts/${post._id}`
-      );
+      postsApi.deletePost(post._id);
       router.push("/");
     } catch (error) {
       console.log(error);
     }
-    console.log("delete");
   };
   const handleDeletePostPopupOpen = () => {
     setIsPopupOpening(true);
@@ -112,9 +110,7 @@ export const getServerSideProps = async ({ params }) => {
     };
   }
 
-  const { data: post } = await axios.get(
-    process.env.NEXT_PUBLIC_DOMAIN + `/api/posts/${params.id}`
-  );
+  const { data: post } = await postsApi.getPostById(params.id);
 
   return {
     props: {

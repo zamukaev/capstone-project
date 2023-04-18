@@ -20,6 +20,7 @@ const Posts = ({ posts }) => {
             alt={post.alt}
             title={post.title}
             description={post.description}
+            viewCount={post.view}
           />
         </StyledListItem>
       ))}

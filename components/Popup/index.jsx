@@ -6,6 +6,9 @@ import { usePostDeletePopup } from "../../zustand/store";
 export const StyledPopupWrapper = styled.div`
   height: 100%;
   width: 100%;
+  display: grid;
+  grid-template-rows: 1fr;
+  grid-template-columns: 1fr;
   position: absolute;
   top: 0;
   left: 0;
@@ -26,30 +29,29 @@ export const StyledPopupWrapper = styled.div`
 `;
 
 export const StyledPopUp = styled.div`
-  position: absolute;
-  left: 40%;
-  top: 40%;
-  z-index: 31;
+  justify-self: center;
+  align-self: start;
   display: grid;
   grid-template-rows: auto 1fr;
-  grid-template-columns: 1fr;
-  padding: 20px;
+  grid-template-columns: 260px;
+  padding: 15px;
+  margin-top: 50px;
   border-radius: 5px;
   background: ${({ theme }) => theme.bg_colors.secondary};
   box-shadow: ${({ shadow }) => shadow || "0px 15px 25px rgba(0, 0, 0, 0.35)"};
 `;
 export const StyledH2 = styled.h2`
   color: red;
-  font-size: 26px;
+  font-size: 16px;
   font-weight: 600;
-  margin-bottom: 25px;
+  margin-bottom: 15px;
 `;
 
 export const StyledButtonsContainer = styled.div`
   display: grid;
   grid-template-rows: 1fr;
   grid-template-columns: 50px 50px;
-  justify-content: end;
+  justify-content: start;
 `;
 
 const Popup = ({ onDeletePost }) => {
@@ -70,7 +72,7 @@ const Popup = ({ onDeletePost }) => {
         <StyledH2>Wollen Sie wirklich den Beitrag löschen?</StyledH2>
         <StyledButtonsContainer>
           <Button
-            padding="10px 15px"
+            padding="5px 10px"
             radius="5px"
             bgcolor={({ theme }) => theme?.bg_colors?.btn_secondary_color}
             onClick={hadlerPostDontDelete}
@@ -78,7 +80,7 @@ const Popup = ({ onDeletePost }) => {
             Nein
           </Button>
           <Button
-            padding="10px 15px"
+            padding="5px 10px"
             margin="0px 0px 0px 30px"
             radius="5px"
             onClick={handlerPostDelete}

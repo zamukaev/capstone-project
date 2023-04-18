@@ -18,6 +18,7 @@ import { usePostDeletePopup } from "../../zustand/store";
 import postsApi from "../../axios";
 
 import styled from "styled-components";
+import axios from "axios";
 
 const StyledEditAndDeletMode = styled.div`
   position: absolute;
@@ -110,8 +111,10 @@ export const getServerSideProps = async ({ params }) => {
     };
   }
 
-  const { data: post } = await postsApi.getPostById(params.id);
-
+  const { data: post } = await axios.get(
+    process.env.NEXT_PUBLIC_DOMAIN + `/api/posts/${params.id}`
+  );
+  //postsApi.getPostById(params.id);
   return {
     props: {
       post,

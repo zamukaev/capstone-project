@@ -34,8 +34,7 @@ const handler = async (req, res) => {
   const file = req.file;
 
   const imageUrl = file.filename;
-  res.status(200).json({ url: "/images/" + imageUrl });
-  console.log("ok");
+  return res.status(200).json({ url: "/images/" + imageUrl });
 };
 
 export default handler;

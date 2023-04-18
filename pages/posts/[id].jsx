@@ -47,7 +47,7 @@ const Detais = ({ post }) => {
   };
   const handleDeletePost = async () => {
     try {
-      postsApi.deletePost(post._id);
+      await postsApi.deletePost(post._id);
       router.push("/");
     } catch (error) {
       console.log(error);

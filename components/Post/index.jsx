@@ -3,7 +3,15 @@ import { StyledLink } from "./Post.styled";
 import { Headline } from "../ui/Headline/Headline.styled";
 import { Paragraph } from "../ui/Paragraph/Paragraph.styled";
 
-const Post = ({ id, image, alt, title, description, full_description }) => {
+const Post = ({
+  id,
+  image,
+  alt,
+  viewCount,
+  title,
+  description,
+  full_description,
+}) => {
   return (
     <>
       <StyledImage

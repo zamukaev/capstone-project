@@ -38,20 +38,20 @@ const StyledEditIcon = styled(FaRegEdit)`
 const Detais = ({ post }) => {
   const router = useRouter();
   const [isEditing, setIsEditing] = useState(false);
-  const { isPopupOpening, setIsPopupOpening, isPostDeleting } =
-    usePostDeletePopup((state) => state);
+  const { setIsPopupOpening, isPostDeleting } = usePostDeletePopup(
+    (state) => state
+  );
 
   const handleIsEditing = () => {
     setIsEditing(!isEditing);
   };
   const handleDeletePost = async () => {
     try {
-      postsApi.deletePost(postId);
+      postsApi.deletePost(post._id);
       router.push("/");
     } catch (error) {
       console.log(error);
     }
-    console.log("delete");
   };
   const handleDeletePostPopupOpen = () => {
     setIsPopupOpening(true);

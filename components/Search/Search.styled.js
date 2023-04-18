@@ -18,7 +18,7 @@ export const StyledIcon = styled(TiDeleteOutline)`
   cursor: pointer;
   position: absolute;
   top: 10px;
-  right: 10px;
+  right: 20px;
   font-size: 20px;
   color: ${({ theme }) => theme.colors.light_white};
 `;

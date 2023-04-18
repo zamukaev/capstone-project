@@ -28,7 +28,7 @@ export const Form = ({
       <StyledTextArea
         {...register("description", {
           required: true,
-          maxLength: 100,
+          maxLength: 300,
         })}
         placeholder="Kurze Beschreibung"
       />
@@ -36,12 +36,12 @@ export const Form = ({
         <Paragraph color="red">This field is required</Paragraph>
       )}
       {errors?.description?.type === "maxLength" && (
-        <Paragraph color="red">Alt cannot exceed 50 characters</Paragraph>
+        <Paragraph color="red">Alt cannot exceed 100 characters</Paragraph>
       )}
       <StyledTextArea
         {...register("full_description", {
           required: true,
-          maxLength: 1000,
+          maxLength: 1500,
         })}
         placeholder="Vollständige Beschreibung"
       />

@@ -19,22 +19,26 @@ export const config = {
 };
 
 const handler = async (req, res) => {
-  //const multerStorage = multer.memoryStorage();
-  const storage = multer.diskStorage({
-    destination: (_, __, cb) => {
-      cb(null, "public/images");
-    },
-    filename: (_, file, cb) => {
-      cb(null, file.originalname);
-    },
-  });
-  const multerUpload = multer({ storage });
+  if (req.method === "POST") {
+    //const multerStorage = multer.memoryStorage();
+    const storage = multer.diskStorage({
+      destination: (_, __, cb) => {
+        cb(null, "public/images");
+      },
+      filename: (_, file, cb) => {
+        cb(null, file.originalname);
+      },
+    });
+    const multerUpload = multer({ storage });
 
-  await runMiddleware(req, res, multerUpload.single("file"));
-  const file = req.file;
+    await runMiddleware(req, res, multerUpload.single("file"));
+    const file = req.file;
 
-  const imageUrl = file.filename;
-  return res.status(200).json({ url: "/images/" + imageUrl });
+    const imageUrl = file.filename;
+    return res.status(200).json({ url: "/images/" + imageUrl });
+  } else {
+    return res.status(405).json({ message: "Method not allowed" });
+  }
 };
 
 export default handler;

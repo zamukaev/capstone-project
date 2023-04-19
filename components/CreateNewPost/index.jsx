@@ -41,6 +41,7 @@ const CreateNewPost = ({ post, isEditing, onHandleIsEditing }) => {
         process.env.NEXT_PUBLIC_DOMAIN + "/api/upload",
         formData
       );
+      console.log(data);
       setImageUrl(data.url);
     } catch (err) {
       console.warn(err);

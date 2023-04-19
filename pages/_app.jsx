@@ -5,8 +5,9 @@ import { Theme } from "../theme/theme";
 import styled from "styled-components";
 import { Sidebare } from "../components/Sidebare";
 import { Header } from "../components/Header";
-import { useBurgerMenuStore } from "../zustand/store";
+import { useBurgerMenuStore, usePostDeletePopup } from "../zustand/store";
 import { useEffect } from "react";
+import { PopUp } from "../components/Popup";
 
 const StyledWrapper = styled.section`
   position: relative;

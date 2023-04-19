@@ -4,6 +4,13 @@ import Link from "next/link";
 
 export const StyledImage = styled(Image)`
   width: 100%;
+  height: 150px;
+  @media${({ theme }) => theme?.media?.tablet} {
+    height: 250px;
+  }
+  @media${({ theme }) => theme?.media?.desktop} {
+    height: 350px;
+  }
   border-radius: ${({ radius }) => radius || "0px"};
 `;
 

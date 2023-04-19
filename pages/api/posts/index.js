@@ -8,7 +8,7 @@ export default async function handler(req, res) {
     if (!posts) {
       return res.status(404).json({ message: "Not found" });
     }
-    res.status(200).json(posts);
+    return res.status(200).json(posts);
   }
 
   if (req.method === "POST") {
@@ -22,9 +22,13 @@ export default async function handler(req, res) {
         date: new Date(),
       });
       const post = await doc.save();
-      res.status(201).json(post);
+      return res.status(201).json(post);
     } catch (error) {
-      console.log("same error hier");
+      return res.status(500).json(error);
+
     }
+    return res.status(201).json(post);
+  } else {
+    return res.status(405).json({ message: "Method not allowed" });
   }
 }

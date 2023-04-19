@@ -4,7 +4,11 @@ import { useState, useRef } from "react";
 
 import { Form } from "../Form";
 import { Headline } from "../ui/Headline/Headline.styled";
-import { StyledFormSection } from "./CreateNewPost.styled";
+import {
+  StyledFormSection,
+  StyledImage,
+  StyledImageContainer,
+} from "./CreateNewPost.styled";
 
 import { useForm } from "react-hook-form";
 
@@ -13,7 +17,7 @@ import axios from "axios";
 
 const CreateNewPost = ({ post, isEditing, onHandleIsEditing }) => {
   const router = useRouter();
-  const [imageUrl, setImageUrl] = useState("");
+  const [imageUrl, setImageUrl] = useState(isEditing ? post.image : "");
   const inputFileRef = useRef();
 
   const {
@@ -73,22 +77,40 @@ const CreateNewPost = ({ post, isEditing, onHandleIsEditing }) => {
   return (
     <StyledFormSection>
       <Headline margin="0px 0px 25px 0px">Neuer Beitrag erstellen</Headline>
-      {imageUrl && (
-        <Image src={imageUrl} alt={"sdsd"} width={350} height={250} />
-      )}
-      <input
-        ref={inputFileRef}
-        onChange={handleChangeFile}
-        type="file"
-        hidden
-      />
-      <Button
-        onClick={() => inputFileRef.current.click()}
-        padding="10px 15px"
-        radius="5px"
-      >
-        Upload
-      </Button>
+      <StyledImageContainer>
+        {imageUrl && (
+          <StyledImage src={imageUrl} alt={"sdsd"} width={350} height={250} />
+        )}
+        <input
+          ref={inputFileRef}
+          onChange={handleChangeFile}
+          type="file"
+          hidden
+        />
+        {!imageUrl && (
+          <Button
+            onClick={() => inputFileRef.current.click()}
+            padding="10px 15px"
+            radius="5px"
+            justifySelf="start"
+          >
+            Hochladen
+          </Button>
+        )}
+        {imageUrl && (
+          <Button
+            onClick={() => setImageUrl("")}
+            padding="10px 15px"
+            radius="5px"
+            margin="0px 0px 0px 10px"
+            justifySelf="start"
+            bgcolor={({ theme }) => theme.bg_colors.btn_secondary_color}
+          >
+            Löschen
+          </Button>
+        )}
+      </StyledImageContainer>
+
       <Form
         register={register}
         handleSubmit={handleSubmit}

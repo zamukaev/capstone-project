@@ -12,7 +12,6 @@ import {
 
 import { useForm } from "react-hook-form";
 
-
 import postsApi from "../../axios/api";
 
 import { Button } from "../ui/Button";
@@ -39,10 +38,7 @@ const CreateNewPost = ({ post, isEditing, onHandleIsEditing }) => {
       const formData = new FormData();
       const file = event.target.files[0];
       formData.append("file", file);
-      const { data } = await axios.post(
-        process.env.NEXT_PUBLIC_DOMAIN + "/api/upload",
-        formData
-      );
+      const { data } = await postsApi.upload(formData);
       setImageUrl(data.url);
       console.log(imageUrl);
     } catch (err) {
@@ -59,14 +55,8 @@ const CreateNewPost = ({ post, isEditing, onHandleIsEditing }) => {
 
     try {
       const { data } = isEditing
-        ? await axios.put(
-            process.env.NEXT_PUBLIC_DOMAIN + `/api/posts/${post._id}`,
-            newObject
-          )
-        : await axios.post(
-            process.env.NEXT_PUBLIC_DOMAIN + "/api/posts",
-            newObject
-          );
+        ? await postsApi.updatePost(post._id, newObject)
+        : await postsApi.createPost(newObject);
 
       onHandleIsEditing && onHandleIsEditing();
 

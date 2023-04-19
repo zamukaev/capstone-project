@@ -8,8 +8,8 @@ import { StyledFormSection } from "./CreateNewPost.styled";
 
 import { useForm } from "react-hook-form";
 
-import postsApi from "../../api/index";
 import { Button } from "../ui/Button";
+import axios from "axios";
 
 const CreateNewPost = ({ post, isEditing, onHandleIsEditing }) => {
   const router = useRouter();
@@ -33,7 +33,10 @@ const CreateNewPost = ({ post, isEditing, onHandleIsEditing }) => {
       const formData = new FormData();
       const file = event.target.files[0];
       formData.append("file", file);
-      const { data } = await postsApi.upload(formData);
+      const { data } = await axios.post(
+        process.env.NEXT_PUBLIC_DOMAIN + "/api/upload",
+        formData
+      );
       setImageUrl(data.url);
       console.log(imageUrl);
     } catch (err) {
@@ -50,8 +53,14 @@ const CreateNewPost = ({ post, isEditing, onHandleIsEditing }) => {
 
     try {
       const { data } = isEditing
-        ? await postsApi.updatePost(post._id, newObject)
-        : await postsApi.createPost(newObject);
+        ? await axios.put(
+            process.env.NEXT_PUBLIC_DOMAIN + `/api/posts/${post._id}`,
+            newObject
+          )
+        : await axios.post(
+            process.env.NEXT_PUBLIC_DOMAIN + "/api/posts",
+            newObject
+          );
 
       onHandleIsEditing && onHandleIsEditing();
 

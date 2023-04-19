@@ -12,9 +12,8 @@ import { StyledSection } from "../../components/ui/Section/Section.styled";
 import { MdDeleteForever } from "react-icons/md";
 import { FaRegEdit } from "react-icons/fa";
 
-import postsApi from "../../api/index";
-
 import styled from "styled-components";
+import axios from "axios";
 
 const StyledEditAndDeletMode = styled.div`
   position: absolute;
@@ -42,7 +41,7 @@ const Detais = ({ post }) => {
 
   const deletePostHandler = async (postId) => {
     try {
-      postsApi.deletePost(postId);
+      axios.delete(process.env.NEXT_PUBLIC_DOMAIN + `/api/posts/${postId}`);
       router.push("/");
     } catch (error) {
       console.log(error);
@@ -104,7 +103,9 @@ export const getServerSideProps = async ({ params }) => {
     };
   }
 
-  const { data: post } = await postsApi.getPostById(params.id);
+  const { data: post } = await axios.get(
+    process.env.NEXT_PUBLIC_DOMAIN + `/api/posts/${params.id}`
+  );
 
   return {
     props: {

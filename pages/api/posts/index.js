@@ -12,17 +12,20 @@ export default async function handler(req, res) {
   }
 
   if (req.method === "POST") {
-    const doc = new Post({
-      title: req.body.title,
-      description: req.body.description,
-      full_description: req.body.full_description,
-      alt: req.body.alt,
-      image: req.body.image,
-      date: new Date(),
-    });
-    const post = await doc.save();
-    if (!post) {
-      return res.status(404).json({ message: "Not found" });
+    try {
+      const doc = new Post({
+        title: req.body.title,
+        description: req.body.description,
+        full_description: req.body.full_description,
+        alt: req.body.alt,
+        image: req.body.image,
+        date: new Date(),
+      });
+      const post = await doc.save();
+      return res.status(201).json(post);
+    } catch (error) {
+      return res.status(500).json(error);
+
     }
     return res.status(201).json(post);
   } else {

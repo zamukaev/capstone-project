@@ -15,7 +15,7 @@ import { FaRegEdit } from "react-icons/fa";
 
 import { usePostDeletePopup } from "../../zustand/store";
 
-import postsApi from "../../axios";
+import postsApi from "../../axios/api";
 
 import styled from "styled-components";
 import axios from "axios";

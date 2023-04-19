@@ -12,7 +12,7 @@ import {
 
 import { useForm } from "react-hook-form";
 
-import postsApi from "../../axios";
+import postsApi from "../../axios/api";
 import { Button } from "../ui/Button";
 
 const CreateNewPost = ({ post, isEditing, onHandleIsEditing }) => {

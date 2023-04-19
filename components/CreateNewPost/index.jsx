@@ -8,12 +8,12 @@ import {
   StyledImage,
   StyledImageContainer,
 } from "./CreateNewPost.styled";
+import { Button } from "../ui/Button";
 
 import { useForm } from "react-hook-form";
 
 import postsApi from "../../axios/api";
-
-import { Button } from "../ui/Button";
+import axios from "axios";
 
 const CreateNewPost = ({ post, isEditing, onHandleIsEditing }) => {
   const router = useRouter();
@@ -37,9 +37,11 @@ const CreateNewPost = ({ post, isEditing, onHandleIsEditing }) => {
       const formData = new FormData();
       const file = event.target.files[0];
       formData.append("file", file);
-      const { data } = await postsApi.upload(formData);
+      const { data } = await axios.post(
+        process.env.NEXT_PUBLIC_DOMAIN + "/api/upload",
+        formData
+      );
       setImageUrl(data.url);
-      console.log(imageUrl);
     } catch (err) {
       console.warn(err);
       alert(err);

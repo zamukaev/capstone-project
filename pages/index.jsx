@@ -1,6 +1,8 @@
 import Posts from "../components/Posts";
 
-import axios from "axios";
+
+import postsApi from "../axios/api";
+
 
 export default function Home({ posts }) {
   return (

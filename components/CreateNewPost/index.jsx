@@ -12,8 +12,10 @@ import {
 
 import { useForm } from "react-hook-form";
 
+
+import postsApi from "../../axios/api";
+
 import { Button } from "../ui/Button";
-import axios from "axios";
 
 const CreateNewPost = ({ post, isEditing, onHandleIsEditing }) => {
   const router = useRouter();

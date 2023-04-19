@@ -13,11 +13,9 @@ import { StyledSection } from "../../components/ui/Section/Section.styled";
 import { MdDeleteForever } from "react-icons/md";
 import { FaRegEdit } from "react-icons/fa";
 
-
 import { usePostDeletePopup } from "../../zustand/store";
 
 import postsApi from "../../axios/api";
-
 
 import styled from "styled-components";
 import axios from "axios";
@@ -50,7 +48,7 @@ const Detais = ({ post }) => {
   };
   const handleDeletePost = async () => {
     try {
-      axios.delete(process.env.NEXT_PUBLIC_DOMAIN + `/api/posts/${postId}`);
+      axios.delete(process.env.NEXT_PUBLIC_DOMAIN + `/api/posts/${post._id}`);
       router.push("/");
     } catch (error) {
       console.log(error);

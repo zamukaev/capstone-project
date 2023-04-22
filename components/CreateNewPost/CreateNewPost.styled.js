@@ -5,8 +5,9 @@ export const StyledFormSection = styled.section`
 max-width: ${({ width }) => width};
 display: grid;
 justify-content: center;
-grid-template-rows: auto 1fr};
-grid-template-columns: 1fr};
+
+grid-template-rows:${({ rows }) => rows || "auto 1fr"} ;
+grid-template-columns: ${({ columns }) => columns || "1fr"};
 background: ${({ theme, bg }) => bg || theme?.bg_colors?.secondary};
 box-shadow: ${({ shadow }) => shadow || "0px 15px 25px rgba(0, 0, 0, 0.35)"};
 border-radius: 5px;

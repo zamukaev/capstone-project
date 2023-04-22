@@ -16,3 +16,9 @@ export const usePostDeletePopup = create((set) => ({
   setIsPostDeleting: (value) => set((state) => ({ isPostDeleting: value })),
   setIsPopupOpening: (value) => set((state) => ({ isPopupOpening: value })),
 }));
+export const useAuthMe = create((set) => ({
+  isAuth: false,
+  user: {},
+  setIsAuth: (value) => set((state) => ({ isAuth: Boolean(value) })),
+  setUser: (value) => set((state) => ({ user: value })),
+}));

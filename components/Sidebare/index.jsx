@@ -16,14 +16,23 @@ import {
   StyledLink,
 } from "./Sidebare.styled";
 
-import { useBurgerMenuStore } from "../../zustand/store";
+import { useAuthMe, useBurgerMenuStore } from "../../zustand/store";
+import { Paragraph } from "../ui/Paragraph/Paragraph.styled";
 
 export const Sidebare = () => {
+  const { isAuth, setIsAuth } = useAuthMe((state) => state);
+  const { isActive, setIsActive } = useBurgerMenuStore((state) => state);
   const [windowWidth, setWindowWidth] = useState(() => {
     if (typeof window !== "undefined") {
       return [window.innerWidth, window.innerHeight];
     }
   });
+  console.log(isAuth);
+  const handleLogout = () => {
+    localStorage.setItem("token", "");
+    setIsActive();
+    setIsAuth(false);
+  };
 
   useEffect(() => {
     const handleWindowResize = () => {
@@ -35,8 +44,6 @@ export const Sidebare = () => {
       window.removeEventListener("resize", handleWindowResize);
     };
   });
-
-  const { isActive, setIsActive } = useBurgerMenuStore((state) => state);
 
   return (
     <StyledSidebareContainer active={isActive && "active"}>
@@ -86,15 +93,30 @@ export const Sidebare = () => {
         </StyledListItem>
       </StyledSidebareUl>
       <StyledButtonsContainer>
-        <Button
-          type="button"
-          padding="10px 13px"
-          radius="5px"
-          bgcolor={({ theme }) => theme.bg_colors.btn_secondary_color}
-          margin="0px 15px 0px 0px"
-        >
-          Auslogen
-        </Button>
+        {isAuth ? (
+          <Button
+            onClick={handleLogout}
+            type="button"
+            padding="10px 13px"
+            radius="5px"
+            bgcolor={({ theme }) => theme.bg_colors.btn_secondary_color}
+            margin="0px 15px 0px 0px"
+          >
+            Abmelden
+          </Button>
+        ) : (
+          <Button
+            onClick={setIsActive}
+            padding="10px 13px"
+            radius="5px"
+            bgcolor="#498C0E"
+            margin="0px 15px 0px 0px"
+            as={Link}
+            href="/login"
+          >
+            Anmelden
+          </Button>
+        )}
         <Button
           as={Link}
           onClick={windowWidth && windowWidth[0] < 694 && setIsActive}

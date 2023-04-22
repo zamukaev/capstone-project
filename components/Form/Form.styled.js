@@ -6,11 +6,11 @@ export const StyledForm = styled.form`
   max-width: 1000px;
 `;
 export const StyledInput = styled.input`
-  padding: 10px;
-  margin-bottom: 20px;
+  padding: ${({ padding }) => padding || "10px"};
+  margin-bottom: ${({ margin }) => margin || "20px"};
   color: ${({ theme }) => theme?.colors?.white};
   background: ${({ theme }) => theme?.bg_colors?.primary};
-  border-radius: 5px;
+  border-radius: ${({ radius }) => radius || "5px"};
 `;
 
 export const StyledTextArea = styled.textarea`

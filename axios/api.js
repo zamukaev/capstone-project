@@ -1,12 +1,16 @@
 import axios from "axios";
-
 const instance = axios.create({
   withCredentials: true,
   baseURL: process.env.NEXT_PUBLIC_DOMAIN,
   headers: { "Content-Type": "application/json" },
 });
+instance.interceptors.request.use((config) => {
+  config.headers.Authorization =
+    typeof window !== "undefined" ? localStorage.getItem("token") : false;
+  return config;
+});
 
-class postsAPI {
+export class postsAPI {
   createPost(post) {
     return instance.post("/api/posts", post);
   }
@@ -27,4 +31,16 @@ class postsAPI {
   }
 }
 
-export default new postsAPI();
+class authAPI {
+  register(user) {
+    return instance.post("/api/register", user);
+  }
+  login(user) {
+    return instance.post("/api/login", user);
+  }
+  authMe() {
+    return instance.get("/api/auth-me");
+  }
+}
+export const postsApi = new postsAPI();
+export const authApi = new authAPI();

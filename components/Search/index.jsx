@@ -11,6 +11,7 @@ export const Search = () => {
   return (
     <StyledSearchContainer>
       <StyledInput
+        radius="0px"
         onChange={(event) => setSearchValue(event.target.value)}
         value={searchValue}
         placeholder="Search..."

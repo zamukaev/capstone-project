@@ -15,11 +15,10 @@ import { FaRegEdit } from "react-icons/fa";
 
 import { usePostDeletePopup } from "../../zustand/store";
 
-import postsApi from "../../axios/api";
-
 import styled from "styled-components";
-import axios from "axios";
 
+import { postsApi } from "../../axios/api";
+import { useAuthMe } from "../../zustand/store";
 const StyledEditAndDeletMode = styled.div`
   position: absolute;
   top: 5px;
@@ -39,16 +38,15 @@ const StyledEditIcon = styled(FaRegEdit)`
 const Detais = ({ post }) => {
   const router = useRouter();
   const [isEditing, setIsEditing] = useState(false);
-  const { setIsPopupOpening, isPostDeleting } = usePostDeletePopup(
-    (state) => state
-  );
+  const { setIsPopupOpening } = usePostDeletePopup((state) => state);
+  const { user, isAuth } = useAuthMe((state) => state);
 
   const handleIsEditing = () => {
     setIsEditing(!isEditing);
   };
   const handleDeletePost = async () => {
     try {
-      axios.delete(process.env.NEXT_PUBLIC_DOMAIN + `/api/posts/${post._id}`);
+      postsApi.deletePost(post._id);
       router.push("/");
     } catch (error) {
       console.log(error);
@@ -84,10 +82,12 @@ const Detais = ({ post }) => {
         rows="auto auto 1fr"
         colums="minmax(1fr, 500px)"
       >
-        <StyledEditAndDeletMode>
-          <StyledDeleteIcon onClick={handleDeletePostPopupOpen} size="25px" />
-          <StyledEditIcon onClick={handleIsEditing} size="25px" />
-        </StyledEditAndDeletMode>
+        {user.roles === "ADMIN" && isAuth && (
+          <StyledEditAndDeletMode>
+            <StyledDeleteIcon onClick={handleDeletePostPopupOpen} size="25px" />
+            <StyledEditIcon onClick={handleIsEditing} size="25px" />
+          </StyledEditAndDeletMode>
+        )}
         {post && (
           <Post
             image={post.image}
@@ -111,9 +111,7 @@ export const getServerSideProps = async ({ params }) => {
     };
   }
 
-  const { data: post } = await axios.get(
-    process.env.NEXT_PUBLIC_DOMAIN + `/api/posts/${params.id}`
-  );
+  const { data: post } = await postsApi.getPostById(params.id);
 
   //postsApi.getPostById(params.id);
 

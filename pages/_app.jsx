@@ -1,14 +1,15 @@
-import GlobalStyle from "../styles";
-import { ThemeProvider, css } from "styled-components";
+import { useEffect } from "react";
 import Head from "next/head";
-import { Theme } from "../theme/theme";
-import styled from "styled-components";
+
 import { Sidebare } from "../components/Sidebare";
 import { Header } from "../components/Header";
 import { useAuthMe, useBurgerMenuStore } from "../zustand/store";
-import { useEffect } from "react";
-
 import { authApi } from "../axios/api";
+import { Theme } from "../theme/theme";
+
+import styled, { ThemeProvider, css } from "styled-components";
+
+import GlobalStyle from "../styles";
 
 const StyledWrapper = styled.section`
   position: relative;

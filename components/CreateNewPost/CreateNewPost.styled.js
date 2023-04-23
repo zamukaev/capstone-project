@@ -15,7 +15,7 @@ padding: 25px};
 margin: ${(props) => props.margin || "0px"};
 gap: 15px;
 
-@media${({ theme }) => theme.media.tablet}{
+@media${({ theme }) => theme?.media?.tablet}{
     grid-template-columns: 50%;
 }
 `;
@@ -27,7 +27,7 @@ export const StyledImageContainer = styled.section`
 export const StyledImage = styled(Image)`
   width: 100%;
   height: 150px;
-  @media${({ theme }) => theme.media.tablet} {
+  @media${({ theme }) => theme?.media?.tablet} {
     height: 250px;
   }
   margin-bottom: 10px;

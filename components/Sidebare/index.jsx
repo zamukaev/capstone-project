@@ -18,8 +18,10 @@ import {
 
 import { useAuthMe, useBurgerMenuStore } from "../../zustand/store";
 import { Paragraph } from "../ui/Paragraph/Paragraph.styled";
+import { useRouter } from "next/router";
 
 export const Sidebare = () => {
+  const router = useRouter();
   const { isAuth, setIsAuth } = useAuthMe((state) => state);
   const { isActive, setIsActive } = useBurgerMenuStore((state) => state);
   const [windowWidth, setWindowWidth] = useState(() => {
@@ -27,11 +29,14 @@ export const Sidebare = () => {
       return [window.innerWidth, window.innerHeight];
     }
   });
-  console.log(isAuth);
+
   const handleLogout = () => {
     localStorage.setItem("token", "");
     setIsActive();
     setIsAuth(false);
+    if (router.pathname === "/create-post") {
+      router.push("/");
+    }
   };
 
   useEffect(() => {

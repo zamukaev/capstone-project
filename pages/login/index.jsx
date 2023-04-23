@@ -1,15 +1,17 @@
+import { useRouter } from "next/router";
+import Link from "next/link";
+import { useState, useEffect } from "react";
+
+import { Button } from "../../components/ui/Button";
+import { authApi } from "../../axios/api";
+import { useAuthMe } from "../../zustand/store";
+
 import styled from "styled-components";
+import { useForm } from "react-hook-form";
+
+import { StyledFormSection } from "../../components/CreateNewPost/CreateNewPost.styled";
 import { Paragraph } from "../../components/ui/Paragraph/Paragraph.styled";
 import { StyledForm, StyledInput } from "../../components/Form/Form.styled";
-import { useState } from "react";
-import { useRouter } from "next/router";
-import { useForm } from "react-hook-form";
-import { Button } from "../../components/ui/Button";
-import { StyledFormSection } from "../../components/CreateNewPost/CreateNewPost.styled";
-import Link from "next/link";
-import { authApi } from "../../axios/api";
-import { useEffect } from "react";
-import { useAuthMe } from "../../zustand/store";
 
 export const StyledButtonsContainer = styled.div`
   display: grid;
@@ -17,6 +19,7 @@ export const StyledButtonsContainer = styled.div`
   grid-template-columns: 1fr auto;
   margin: ${({ margin }) => margin || "0px"};
 `;
+
 const Login = () => {
   const [error, setError] = useState(false);
   const router = useRouter();

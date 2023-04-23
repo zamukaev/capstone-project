@@ -1,6 +1,5 @@
 import Link from "next/link";
 import Head from "next/head";
-
 import { useRouter } from "next/router";
 import { useState } from "react";
 
@@ -8,17 +7,17 @@ import Post from "../../components/Post";
 import CreateNewPost from "../../components/CreateNewPost";
 import Popup from "../../components/Popup";
 import { Button } from "../../components/ui/Button";
-import { StyledSection } from "../../components/ui/Section/Section.styled";
-
-import { MdDeleteForever } from "react-icons/md";
-import { FaRegEdit } from "react-icons/fa";
-
-import { usePostDeletePopup } from "../../zustand/store";
-
-import styled from "styled-components";
 
 import { postsApi } from "../../axios/api";
 import { useAuthMe } from "../../zustand/store";
+import { usePostDeletePopup } from "../../zustand/store";
+
+import styled from "styled-components";
+import { MdDeleteForever } from "react-icons/md";
+import { FaRegEdit } from "react-icons/fa";
+
+import { StyledSection } from "../../components/ui/Section/Section.styled";
+
 const StyledEditAndDeletMode = styled.div`
   position: absolute;
   top: 5px;

@@ -7,13 +7,13 @@ import { useAuthMe } from "../../zustand/store";
 
 const CreatePost = () => {
   const router = useRouter();
-  const { user } = useAuthMe((state) => state);
+  const { user, isAuth } = useAuthMe((state) => state);
 
   useEffect(() => {
     if (user.roles !== "ADMIN") {
       router.push("/");
     }
-  }, []);
+  }, [isAuth, user.roles]);
 
   return (
     <>

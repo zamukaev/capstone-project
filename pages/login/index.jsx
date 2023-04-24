@@ -85,7 +85,7 @@ const Login = () => {
             margin="0px 10px 0px 0px"
             hover="#58B507"
           >
-            Anmeled
+            Anmelden
           </Button>
           <Button
             as={Link}

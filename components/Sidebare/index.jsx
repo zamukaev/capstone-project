@@ -16,14 +16,30 @@ import {
   StyledLink,
 } from "./Sidebare.styled";
 
-import { useBurgerMenuStore } from "../../zustand/store";
+import { useAuthorizationMe, useBurgerMenuStore } from "../../zustand/store";
+
+import { useRouter } from "next/router";
 
 export const Sidebare = () => {
+  const router = useRouter();
+  const { isAuthorized, setIsAuthorized } = useAuthorizationMe(
+    (state) => state
+  );
+  const { isActive, setIsActive } = useBurgerMenuStore((state) => state);
   const [windowWidth, setWindowWidth] = useState(() => {
     if (typeof window !== "undefined") {
       return [window.innerWidth, window.innerHeight];
     }
   });
+
+  const handleLogout = () => {
+    localStorage.setItem("token", "");
+    windowWidth && windowWidth[0] < 694 && setIsActive();
+    setIsAuthorized(false);
+    if (router.pathname === "/create-post") {
+      router.push("/");
+    }
+  };
 
   useEffect(() => {
     const handleWindowResize = () => {
@@ -35,8 +51,6 @@ export const Sidebare = () => {
       window.removeEventListener("resize", handleWindowResize);
     };
   });
-
-  const { isActive, setIsActive } = useBurgerMenuStore((state) => state);
 
   return (
     <StyledSidebareContainer active={isActive && "active"}>
@@ -85,16 +99,31 @@ export const Sidebare = () => {
           Einstellungen
         </StyledListItem>
       </StyledSidebareUl>
-      <StyledButtonsContainer>
-        <Button
-          type="button"
-          padding="10px 13px"
-          radius="5px"
-          bgcolor={({ theme }) => theme.bg_colors.btn_secondary_color}
-          margin="0px 15px 0px 0px"
-        >
-          Auslogen
-        </Button>
+      <StyledButtonsContainer padding="15px">
+        {isAuthorized ? (
+          <Button
+            onClick={handleLogout}
+            type="button"
+            padding="10px 13px"
+            radius="5px"
+            bgcolor={({ theme }) => theme.bg_colors.btn_secondary_color}
+            margin="0px 15px 0px 0px"
+          >
+            Abmelden
+          </Button>
+        ) : (
+          <Button
+            onClick={windowWidth && windowWidth[0] < 694 && setIsActive}
+            padding="10px 13px"
+            radius="5px"
+            bgcolor="#498C0E"
+            margin="0px 15px 0px 0px"
+            as={Link}
+            href="/login"
+          >
+            Anmelden
+          </Button>
+        )}
         <Button
           as={Link}
           onClick={windowWidth && windowWidth[0] < 694 && setIsActive}

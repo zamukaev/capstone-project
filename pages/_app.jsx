@@ -1,13 +1,15 @@
-import GlobalStyle from "../styles";
-import { ThemeProvider, css } from "styled-components";
+import { useEffect } from "react";
 import Head from "next/head";
-import { Theme } from "../theme/theme";
-import styled from "styled-components";
+
 import { Sidebare } from "../components/Sidebare";
 import { Header } from "../components/Header";
-import { useBurgerMenuStore, usePostDeletePopup } from "../zustand/store";
-import { useEffect } from "react";
-import { PopUp } from "../components/Popup";
+import { useAuthorizationMe, useBurgerMenuStore } from "../zustand/store";
+import { authApi } from "../axios/api";
+import { Theme } from "../theme/theme";
+
+import styled, { ThemeProvider, css } from "styled-components";
+
+import GlobalStyle from "../styles";
 
 const StyledWrapper = styled.section`
   position: relative;
@@ -51,14 +53,28 @@ const StyledMain = styled.main`
 
 export default function App({ Component, pageProps }) {
   const isActive = useBurgerMenuStore((state) => state.isActive);
+  const { isAuthorized, setIsAuthorized, setUser } = useAuthorizationMe(
+    (state) => state
+  );
 
   useEffect(() => {
+    authMe();
     if (isActive) {
       document.body.style.overflow = "hidden";
     } else {
       document.body.style.overflow = "scroll";
     }
-  }, [isActive]);
+  }, [isActive, isAuthorized]);
+
+  const authMe = async () => {
+    try {
+      const { data } = await authApi.authMe();
+      setIsAuthorized(true);
+      setUser(data);
+    } catch (error) {
+      setIsAuthorized(false);
+    }
+  };
 
   return (
     <ThemeProvider theme={Theme}>

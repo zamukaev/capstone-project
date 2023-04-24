@@ -8,7 +8,7 @@ export const StyledSidebareContainer = styled.section`
   left: 0;
   padding: 10px;
   grid-area: sidebare;
-  width: 240px;
+  width: 260px;
   display: grid;
   grid-template-rows: auto auto auto 1fr;
   grid-template-columns: ${({ colums }) => colums || "1fr"};
@@ -38,13 +38,13 @@ export const StyledSidebareContainer = styled.section`
   }};
 
   @media${({ theme }) => theme.media.tablet} {
-    width: 250px;
+    width: 260px;
     left: 0;
     top: 0;
     height: 100%;
     opacity: 1;
     visibility: visible;
-  } ;
+  }
 `;
 export const StyledTop = styled.section`
   position: relative;
@@ -77,11 +77,11 @@ export const StyledSpan = styled.span`
   color: ${({ clr, theme }) => clr || theme.colors.white};
 `;
 export const StyledButtonsContainer = styled.section`
-  padding: 10px;
+  padding: ${({ padding }) => padding};
   display: grid;
   grid-template-rows: 1fr;
   grid-template-columns: auto 1fr;
-  margin-top: 20px;
+  margin: ${({ margin }) => margin || "0px"};
 `;
 
 export const StyledSidebareUl = styled.ul`

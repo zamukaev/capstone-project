@@ -2,18 +2,19 @@ import { useRouter } from "next/router";
 import { useState, useRef } from "react";
 
 import { Form } from "../Form";
+import { Button } from "../ui/Button";
+
+import { useForm } from "react-hook-form";
+
 import { Headline } from "../ui/Headline/Headline.styled";
 import {
   StyledFormSection,
   StyledImage,
   StyledImageContainer,
 } from "./CreateNewPost.styled";
-import { Button } from "../ui/Button";
 
-import { useForm } from "react-hook-form";
-
-import postsApi from "../../axios/api";
 import axios from "axios";
+import { postsApi } from "../../axios/api";
 
 const CreateNewPost = ({ post, isEditing, onHandleIsEditing }) => {
   const router = useRouter();
@@ -41,7 +42,7 @@ const CreateNewPost = ({ post, isEditing, onHandleIsEditing }) => {
         process.env.NEXT_PUBLIC_DOMAIN + "/api/upload",
         formData
       );
-      console.log(data);
+
       setImageUrl(data.url);
     } catch (err) {
       console.warn(err);

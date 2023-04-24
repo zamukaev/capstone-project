@@ -14,4 +14,10 @@ export const StyledButton = styled.button`
   box-shadow: 0px 7px 17px -10px rgba(32, 84, 219, 0.35);
   border-radius: ${({ radius }) => radius || "0px"};
   color: ${({ theme, color }) => color || theme?.colors?.white};
+  &:hover {
+    background: ${({ hover }) => hover};
+  }
+  &:disabled {
+    background: gray;
+  }
 `;

@@ -1,6 +1,5 @@
 import Link from "next/link";
 import Head from "next/head";
-
 import { useRouter } from "next/router";
 import { useState } from "react";
 
@@ -8,17 +7,16 @@ import Post from "../../components/Post";
 import CreateNewPost from "../../components/CreateNewPost";
 import Popup from "../../components/Popup";
 import { Button } from "../../components/ui/Button";
-import { StyledSection } from "../../components/ui/Section/Section.styled";
 
+import { postsApi } from "../../axios/api";
+import { useAuthorizationMe } from "../../zustand/store";
+import { usePostDeletePopup } from "../../zustand/store";
+
+import styled from "styled-components";
 import { MdDeleteForever } from "react-icons/md";
 import { FaRegEdit } from "react-icons/fa";
 
-import { usePostDeletePopup } from "../../zustand/store";
-
-import postsApi from "../../axios/api";
-
-import styled from "styled-components";
-import axios from "axios";
+import { StyledSection } from "../../components/ui/Section/Section.styled";
 
 const StyledEditAndDeletMode = styled.div`
   position: absolute;
@@ -39,16 +37,15 @@ const StyledEditIcon = styled(FaRegEdit)`
 const Detais = ({ post }) => {
   const router = useRouter();
   const [isEditing, setIsEditing] = useState(false);
-  const { setIsPopupOpening, isPostDeleting } = usePostDeletePopup(
-    (state) => state
-  );
+  const { setIsPopupOpening } = usePostDeletePopup((state) => state);
+  const { user, isAuthorized } = useAuthorizationMe((state) => state);
 
   const handleIsEditing = () => {
     setIsEditing(!isEditing);
   };
   const handleDeletePost = async () => {
     try {
-      axios.delete(process.env.NEXT_PUBLIC_DOMAIN + `/api/posts/${post._id}`);
+      postsApi.deletePost(post._id);
       router.push("/");
     } catch (error) {
       console.log(error);
@@ -84,10 +81,12 @@ const Detais = ({ post }) => {
         rows="auto auto 1fr"
         colums="minmax(1fr, 500px)"
       >
-        <StyledEditAndDeletMode>
-          <StyledDeleteIcon onClick={handleDeletePostPopupOpen} size="25px" />
-          <StyledEditIcon onClick={handleIsEditing} size="25px" />
-        </StyledEditAndDeletMode>
+        {user.roles === "ADMIN" && isAuthorized && (
+          <StyledEditAndDeletMode>
+            <StyledDeleteIcon onClick={handleDeletePostPopupOpen} size="25px" />
+            <StyledEditIcon onClick={handleIsEditing} size="25px" />
+          </StyledEditAndDeletMode>
+        )}
         {post && (
           <Post
             image={post.image}
@@ -111,9 +110,7 @@ export const getServerSideProps = async ({ params }) => {
     };
   }
 
-  const { data: post } = await axios.get(
-    process.env.NEXT_PUBLIC_DOMAIN + `/api/posts/${params.id}`
-  );
+  const { data: post } = await postsApi.getPostById(params.id);
 
   //postsApi.getPostById(params.id);
 

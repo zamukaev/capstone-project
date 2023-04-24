@@ -45,7 +45,7 @@ const Login = () => {
     }
   };
   useEffect(() => {
-    if (localStorage.getItem("token") && Boolean(isAuthorized)) {
+    if (localStorage.getItem("token") && isAuthorized) {
       router.push("/");
     }
   });

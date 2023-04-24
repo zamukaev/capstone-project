@@ -4,17 +4,10 @@ import { useRouter } from "next/router";
 import { Button } from "../../components/ui/Button";
 import { authApi } from "../../axios/api";
 
-import styled from "styled-components";
 import { useForm } from "react-hook-form";
 
 import { StyledFormSection } from "../../components/CreateNewPost/CreateNewPost.styled";
 import { StyledForm, StyledInput } from "../../components/Form/Form.styled";
-
-export const StyledButtonsContainer = styled.div`
-  display: grid;
-  grid-template-rows: 1fr;
-  grid-template-columns: 1fr auto;
-`;
 
 const Login = () => {
   const [isLoading, setIsloading] = useState(false);
@@ -87,7 +80,7 @@ const Login = () => {
           self="end"
           disabled={isLoading}
         >
-          Regestrieren
+          Registrieren
         </Button>
       </StyledForm>
     </StyledFormSection>

@@ -3,17 +3,17 @@ import { useEffect } from "react";
 import { useRouter } from "next/router";
 
 import CreateNewPost from "../../components/CreateNewPost";
-import { useAuthMe } from "../../zustand/store";
+import { useAuthorizationMe } from "../../zustand/store";
 
 const CreatePost = () => {
   const router = useRouter();
-  const { user, isAuth } = useAuthMe((state) => state);
+  const { user, isAuthorized } = useAuthorizationMe((state) => state);
 
   useEffect(() => {
     if (user.roles !== "ADMIN") {
       router.push("/");
     }
-  }, [isAuth, user.roles]);
+  }, [isAuthorized, user.roles]);
 
   return (
     <>

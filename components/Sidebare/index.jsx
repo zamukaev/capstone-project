@@ -16,13 +16,15 @@ import {
   StyledLink,
 } from "./Sidebare.styled";
 
-import { useAuthMe, useBurgerMenuStore } from "../../zustand/store";
-import { Paragraph } from "../ui/Paragraph/Paragraph.styled";
+import { useAuthorizationMe, useBurgerMenuStore } from "../../zustand/store";
+
 import { useRouter } from "next/router";
 
 export const Sidebare = () => {
   const router = useRouter();
-  const { isAuth, setIsAuth } = useAuthMe((state) => state);
+  const { isAuthorized, setIsAuthorized } = useAuthorizationMe(
+    (state) => state
+  );
   const { isActive, setIsActive } = useBurgerMenuStore((state) => state);
   const [windowWidth, setWindowWidth] = useState(() => {
     if (typeof window !== "undefined") {
@@ -32,8 +34,8 @@ export const Sidebare = () => {
 
   const handleLogout = () => {
     localStorage.setItem("token", "");
-    setIsActive();
-    setIsAuth(false);
+    windowWidth && windowWidth[0] < 694 && setIsActive();
+    setIsAuthorized(false);
     if (router.pathname === "/create-post") {
       router.push("/");
     }
@@ -97,8 +99,8 @@ export const Sidebare = () => {
           Einstellungen
         </StyledListItem>
       </StyledSidebareUl>
-      <StyledButtonsContainer>
-        {isAuth ? (
+      <StyledButtonsContainer padding="15px">
+        {isAuthorized ? (
           <Button
             onClick={handleLogout}
             type="button"
@@ -111,7 +113,7 @@ export const Sidebare = () => {
           </Button>
         ) : (
           <Button
-            onClick={setIsActive}
+            onClick={windowWidth && windowWidth[0] < 694 && setIsActive}
             padding="10px 13px"
             radius="5px"
             bgcolor="#498C0E"

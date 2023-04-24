@@ -34,7 +34,7 @@ export default async function handler(req, res) {
       }
       const token = generateAccessToken(user._id, user.roles);
       const { password, ...userData } = user._doc;
-      console.log(user._doc);
+
       return res.status(200).json({
         ...userData,
         token,

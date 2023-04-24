@@ -11,14 +11,15 @@ export const useSearchValue = create((set) => ({
 }));
 
 export const usePostDeletePopup = create((set) => ({
-  isPostDeleting: false,
+  isPostDeleted: false,
   isPopupOpening: false,
-  setIsPostDeleting: (value) => set((state) => ({ isPostDeleting: value })),
+  setIsPostDeleted: (value) => set((state) => ({ isPostDeleted: value })),
   setIsPopupOpening: (value) => set((state) => ({ isPopupOpening: value })),
 }));
-export const useAuthMe = create((set) => ({
-  isAuth: false,
+export const useAuthorizationMe = create((set) => ({
+  isAuthorized: false,
   user: {},
-  setIsAuth: (value) => set((state) => ({ isAuth: Boolean(value) })),
+  setIsAuthorized: (value) =>
+    set((state) => ({ isAuthorized: Boolean(value) })),
   setUser: (value) => set((state) => ({ user: value })),
 }));

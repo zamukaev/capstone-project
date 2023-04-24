@@ -12,8 +12,8 @@ export const StyledPopupWrapper = styled.div`
   background: rgb(255, 255, 255, 0%);
   z-index: 100;
   transition: all 0.5s ease-out;
-  ${({ isPopupOpenig }) => {
-    return isPopupOpenig
+  ${({ isPopupOpening }) => {
+    return isPopupOpening
       ? css`
           opacity: 1;
           visibility: visible;

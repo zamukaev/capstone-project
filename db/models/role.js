@@ -1,6 +1,5 @@
 import mongoose from "mongoose";
 
-// Schema für Role der Users
 const RoleSchema = new mongoose.Schema({
   value: { type: String, unique: true, default: "USER" },
 });

@@ -8,7 +8,6 @@ export default async function handler(req, res) {
   if (req.method === "GET") {
     checkAuth(req, res, async () => {
       try {
-        console.log("req.user.id", req.user.id);
         const user = await User.findById(req.user.id);
         if (!user) {
           return res.status(404).json({

@@ -3,7 +3,7 @@ import Head from "next/head";
 
 import { Sidebare } from "../components/Sidebare";
 import { Header } from "../components/Header";
-import { useAuthMe, useBurgerMenuStore } from "../zustand/store";
+import { useAuthorizationMe, useBurgerMenuStore } from "../zustand/store";
 import { authApi } from "../axios/api";
 import { Theme } from "../theme/theme";
 
@@ -53,7 +53,9 @@ const StyledMain = styled.main`
 
 export default function App({ Component, pageProps }) {
   const isActive = useBurgerMenuStore((state) => state.isActive);
-  const { isAuth, setIsAuth, setUser } = useAuthMe((state) => state);
+  const { isAuthorized, setIsAuthorized, setUser } = useAuthorizationMe(
+    (state) => state
+  );
 
   useEffect(() => {
     authMe();
@@ -62,17 +64,15 @@ export default function App({ Component, pageProps }) {
     } else {
       document.body.style.overflow = "scroll";
     }
-  }, [isActive, isAuth]);
+  }, [isActive, isAuthorized]);
 
   const authMe = async () => {
     try {
       const { data } = await authApi.authMe();
-      setIsAuth(true);
+      setIsAuthorized(true);
       setUser(data);
-      console.log(data);
     } catch (error) {
-      setIsAuth(false);
-      console.log("error", error);
+      setIsAuthorized(false);
     }
   };
 

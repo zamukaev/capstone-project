@@ -9,7 +9,7 @@ import Popup from "../../components/Popup";
 import { Button } from "../../components/ui/Button";
 
 import { postsApi } from "../../axios/api";
-import { useAuthMe } from "../../zustand/store";
+import { useAuthorizationMe } from "../../zustand/store";
 import { usePostDeletePopup } from "../../zustand/store";
 
 import styled from "styled-components";
@@ -38,7 +38,7 @@ const Detais = ({ post }) => {
   const router = useRouter();
   const [isEditing, setIsEditing] = useState(false);
   const { setIsPopupOpening } = usePostDeletePopup((state) => state);
-  const { user, isAuth } = useAuthMe((state) => state);
+  const { user, isAuthorized } = useAuthorizationMe((state) => state);
 
   const handleIsEditing = () => {
     setIsEditing(!isEditing);
@@ -81,7 +81,7 @@ const Detais = ({ post }) => {
         rows="auto auto 1fr"
         colums="minmax(1fr, 500px)"
       >
-        {user.roles === "ADMIN" && isAuth && (
+        {user.roles === "ADMIN" && isAuthorized && (
           <StyledEditAndDeletMode>
             <StyledDeleteIcon onClick={handleDeletePostPopupOpen} size="25px" />
             <StyledEditIcon onClick={handleIsEditing} size="25px" />

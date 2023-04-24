@@ -12,10 +12,9 @@ export default async function handler(req, res) {
       const { firstname, lastname, email, password, avatarUrl } = req.body;
       const candidate = await User.findOne({ email });
       if (candidate) {
-        //wenn ja dann Fehler melden
         return res
           .status(400)
-          .json("Der Benutzer mit der Name schon existiert");
+          .json("Ein Benutzer mit diesem Name existiert schon.");
       }
       const passwordHash = password;
       const salt = await bcrypt.genSalt(10);

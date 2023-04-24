@@ -22,7 +22,7 @@ const Popup = ({ onDeletePost }) => {
   };
 
   return (
-    <StyledPopupWrapper isPopupOpenig={isPopupOpening}>
+    <StyledPopupWrapper isPopupOpening={isPopupOpening}>
       <StyledPopUp>
         <StyledH2>Wollen Sie wirklich den Beitrag löschen?</StyledH2>
         <StyledButtonsContainer>

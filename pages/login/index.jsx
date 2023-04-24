@@ -4,26 +4,22 @@ import { useState, useEffect } from "react";
 
 import { Button } from "../../components/ui/Button";
 import { authApi } from "../../axios/api";
-import { useAuthMe } from "../../zustand/store";
+import { useAuthorizationMe } from "../../zustand/store";
 
-import styled from "styled-components";
 import { useForm } from "react-hook-form";
 
 import { StyledFormSection } from "../../components/CreateNewPost/CreateNewPost.styled";
 import { Paragraph } from "../../components/ui/Paragraph/Paragraph.styled";
 import { StyledForm, StyledInput } from "../../components/Form/Form.styled";
 
-export const StyledButtonsContainer = styled.div`
-  display: grid;
-  grid-template-rows: 1fr;
-  grid-template-columns: 1fr auto;
-  margin: ${({ margin }) => margin || "0px"};
-`;
+import { StyledButtonsContainer } from "../../components/Sidebare/Sidebare.styled";
 
 const Login = () => {
   const [error, setError] = useState(false);
   const router = useRouter();
-  const { isAuth, setIsAuth } = useAuthMe((state) => state);
+  const { isAuthorized, setIsAuthorized } = useAuthorizationMe(
+    (state) => state
+  );
 
   const {
     register,
@@ -41,7 +37,7 @@ const Login = () => {
         localStorage.setItem("token", data.token);
       }
       if (!error) {
-        setIsAuth(true);
+        setIsAuthorized(true);
         router.push("/");
       }
     } catch (error) {
@@ -49,7 +45,7 @@ const Login = () => {
     }
   };
   useEffect(() => {
-    if (localStorage.getItem("token") && Boolean(isAuth)) {
+    if (localStorage.getItem("token") && Boolean(isAuthorized)) {
       router.push("/");
     }
   });

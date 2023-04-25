@@ -25,6 +25,7 @@ export default async function handler(req, res) {
           alt: req.body.alt,
           image: req.body.image,
           date: new Date(),
+          user: req?.user.id,
         });
         const post = await doc.save();
         return res.status(201).json(post);

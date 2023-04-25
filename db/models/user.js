@@ -19,6 +19,8 @@ const UserSchema = new mongoose.Schema({
   },
   roles: { type: String, ref: "Role" },
   avatarUrl: String,
+  years: Number,
+  status: String,
 });
 
 const User = mongoose.models.User || mongoose.model("User", UserSchema);

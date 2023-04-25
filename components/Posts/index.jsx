@@ -21,6 +21,7 @@ const Posts = ({ posts }) => {
             title={post.title}
             description={post.description}
             viewCount={post.view}
+            date={post.createdAt}
           />
         </StyledListItem>
       ))}

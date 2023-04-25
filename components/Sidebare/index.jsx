@@ -19,10 +19,11 @@ import {
 import { useAuthorizationMe, useBurgerMenuStore } from "../../zustand/store";
 
 import { useRouter } from "next/router";
+import { Paragraph } from "../ui/Paragraph/Paragraph.styled";
 
 export const Sidebare = () => {
   const router = useRouter();
-  const { isAuthorized, setIsAuthorized } = useAuthorizationMe(
+  const { isAuthorized, setIsAuthorized, user } = useAuthorizationMe(
     (state) => state
   );
   const { isActive, setIsActive } = useBurgerMenuStore((state) => state);
@@ -58,9 +59,13 @@ export const Sidebare = () => {
         <StyledTopContent>
           <Image src="/images/avatar.png" alt="avatar" width={95} height={95} />
           <StyledInfos>
-            <StyledSpan>name</StyledSpan>
+            <Paragraph>
+              <StyledSpan>
+                {user.firstname} {user.lastname}
+              </StyledSpan>
+            </Paragraph>
             <StyledSpan clr={({ theme }) => theme.colors.light_white}>
-              title
+              {user.status}
             </StyledSpan>
           </StyledInfos>
         </StyledTopContent>
@@ -127,7 +132,7 @@ export const Sidebare = () => {
         <Button
           as={Link}
           onClick={windowWidth && windowWidth[0] < 694 && setIsActive}
-          href="/create-post"
+          href={isAuthorized ? "/create-post" : "/login"}
           padding="10px 13px"
           radius="5px"
           bgcolor={({ theme }) => theme.bg_colors.btn_primary_color}

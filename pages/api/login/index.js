@@ -16,7 +16,6 @@ export default async function handler(req, res) {
   if (req.method === "POST") {
     try {
       const user = await User.findOne({ email: req.body.email });
-
       if (!user) {
         return res.status(404).json({
           message: "password oder login ist falsch",
@@ -26,12 +25,12 @@ export default async function handler(req, res) {
         req.body.password,
         user._doc.password
       );
-
       if (!isValidPass) {
         return res.status(404).json({
           message: "password oder login ist falsch",
         });
       }
+
       const token = generateAccessToken(user._id, user.roles);
       const { password, ...userData } = user._doc;
 

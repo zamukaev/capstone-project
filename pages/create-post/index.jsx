@@ -7,13 +7,13 @@ import { useAuthorizationMe } from "../../zustand/store";
 
 const CreatePost = () => {
   const router = useRouter();
-  const { user, isAuthorized } = useAuthorizationMe((state) => state);
+  const { isAuthorized } = useAuthorizationMe((state) => state);
 
   useEffect(() => {
-    if (user.roles !== "ADMIN") {
-      router.push("/");
+    if (!isAuthorized) {
+      router.push("/login");
     }
-  }, [isAuthorized, user.roles]);
+  }, []);
 
   return (
     <>

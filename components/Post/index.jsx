@@ -11,6 +11,7 @@ const Post = ({
   title,
   description,
   full_description,
+  date,
 }) => {
   return (
     <>

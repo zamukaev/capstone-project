@@ -81,7 +81,7 @@ const Detais = ({ post }) => {
         rows="auto auto 1fr"
         colums="minmax(1fr, 500px)"
       >
-        {user.roles === "ADMIN" && isAuthorized && (
+        {user._id === post.user && isAuthorized && (
           <StyledEditAndDeletMode>
             <StyledDeleteIcon onClick={handleDeletePostPopupOpen} size="25px" />
             <StyledEditIcon onClick={handleIsEditing} size="25px" />
@@ -109,14 +109,19 @@ export const getServerSideProps = async ({ params }) => {
       notFound: true,
     };
   }
+  try {
+    const { data: post } = await postsApi.getPostById(params.id);
 
-  const { data: post } = await postsApi.getPostById(params.id);
+    //postsApi.getPostById(params.id);
 
-  //postsApi.getPostById(params.id);
-
-  return {
-    props: {
-      post,
-    },
-  };
+    return {
+      props: {
+        post,
+      },
+    };
+  } catch (error) {
+    return {
+      notFound: true,
+    };
+  }
 };

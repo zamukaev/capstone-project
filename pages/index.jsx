@@ -12,11 +12,21 @@ export default function Home({ posts }) {
 
 export const getServerSideProps = async (context) => {
   // fetch data with axios from backend
-
-  const { data: posts } = await postsApi.getPosts();
-  return {
-    props: {
-      posts: posts.reverse(),
-    },
-  };
+  try {
+    const { data: posts } = await postsApi.getPosts();
+    if (!posts) {
+      return {
+        notFound: true,
+      };
+    }
+    return {
+      props: {
+        posts: posts.reverse(),
+      },
+    };
+  } catch (error) {
+    return {
+      notFound: true,
+    };
+  }
 };

@@ -80,7 +80,7 @@ export const StyledButtonsContainer = styled.section`
   padding: ${({ padding }) => padding};
   display: grid;
   grid-template-rows: 1fr;
-  grid-template-columns: auto 1fr;
+  grid-template-columns: 1fr auto;
   margin: ${({ margin }) => margin || "0px"};
 `;
 

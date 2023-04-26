@@ -1,11 +1,17 @@
 import styled from "styled-components";
 
 export const StyledForm = styled.form`
+  padding: 20px;
   display: flex;
   flex-direction: column;
-  max-width: 1000px;
+  max-width: 440px;
+  background: ${({ theme }) => theme?.bg_colors?.secondary};
+  box-shadow: ${({ shadow }) => shadow || "0px 15px 25px rgba(0, 0, 0, 0.35)"};
 `;
 export const StyledInput = styled.input`
+  @media${({ theme }) => theme?.media?.tablet} {
+    width: 400px;
+  }
   padding: ${({ padding }) => padding || "10px"};
   margin-bottom: ${({ margin }) => margin || "20px"};
   color: ${({ theme }) => theme?.colors?.white};

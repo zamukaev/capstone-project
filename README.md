@@ -2,20 +2,27 @@
 ### My Blog <a href="https://capstone-project-zamukaev.vercel.app/login/">(demo)</a>
 # Main functions:
 
-<ul>
-  <li>Cart (adding, deleting)</li>
-  <li>ordering</li>
-  <li>Receiving products (filtering)</li>
- </ul>
+
+  - Create a Post
+  - liUpdate a Post
+  - Delete A Post
+  - Detail page
+  - Authorization 
+
+
 
 # 🛠 stack:
 
- <ul>
-  <li>TypeScript</li>
-  <li>React Js(hooks)</li>
-  <li>Redux</li>
-  <li>css modules</li>
-  <li>classNames</li>
- </ul>
+
+  - JavaScript
+  - React.js / Next.js
+  - Zustand
+  - Styled-Componets
+  - Node.js
+  - MongoDB
+  - Mongoose
+  - Axios
+  - JWT Token
+
 
 

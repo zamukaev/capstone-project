@@ -4,7 +4,7 @@
 
 
   - Create a Post
-  - liUpdate a Post
+  - Update a Post
   - Delete A Post
   - Detail page
   - Authorization 

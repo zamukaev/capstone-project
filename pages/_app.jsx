@@ -10,6 +10,7 @@ import { Theme } from "../theme/theme";
 import styled, { ThemeProvider, css } from "styled-components";
 
 import GlobalStyle from "../styles";
+import { useRouter } from "next/router";
 
 const StyledWrapper = styled.section`
   position: relative;
@@ -43,8 +44,8 @@ const StyledMain = styled.main`
           grid-area: main;
           display: grid;
           gap: 30px;
-          grid-template-rows: auto 1fr 1fr;
-          grid-template-columns: 1fr;
+          grid-template-rows: ${({ rows }) => rows};
+          grid-template-columns: ${({ columns }) => columns};
           padding: 0px 20px;
           margin-top: 20px;
         `;
@@ -56,7 +57,7 @@ export default function App({ Component, pageProps }) {
   const { isAuthorized, setIsAuthorized, setUser } = useAuthorizationMe(
     (state) => state
   );
-
+  const router = useRouter();
   useEffect(() => {
     authMe();
     if (isActive) {
@@ -72,6 +73,7 @@ export default function App({ Component, pageProps }) {
       setIsAuthorized(true);
       setUser(data);
     } catch (error) {
+      router.push("/login");
       setIsAuthorized(false);
     }
   };
@@ -85,7 +87,7 @@ export default function App({ Component, pageProps }) {
       <StyledWrapper>
         <Header />
         <Sidebare />
-        <StyledMain>
+        <StyledMain rows="auto 1fr 1fr" columns="1fr">
           <Component {...pageProps} />
         </StyledMain>
       </StyledWrapper>

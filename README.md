@@ -1,5 +1,5 @@
 # About this project
-### My Blog <a href="https://react-pizza-typescript-tau.vercel.app/">(demo)</a>
+### My Blog <a href="https://capstone-project-zamukaev.vercel.app/login/">(demo)</a>
 # Main functions:
 
 <ul>

@@ -35,12 +35,11 @@ const Login = () => {
 
   return (
     <StyledFormSection
-      justifyItems="center"
       rows="1fr"
       margin="40px 0px 0px 0px"
       position="fixed"
     >
-      <StyledForm onSubmit={handleSubmit(onSubmit)}>
+      <StyledForm justifySelf="center" onSubmit={handleSubmit(onSubmit)}>
         <StyledInput
           {...register("firstname", {
             required: true,

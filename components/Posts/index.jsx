@@ -9,8 +9,8 @@ const Posts = ({ posts }) => {
     <StyledUl role="list">
       {(searchValue
         ? posts?.filter((post) =>
-            post.title.toLowerCase().includes(searchValue.toLowerCase())
-          )
+          post.title.toLowerCase().includes(searchValue.toLowerCase())
+        )
         : posts
       ).map((post) => (
         <StyledListItem gap="15px" radius="5px" role="listitem" key={post._id}>

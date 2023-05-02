@@ -2,23 +2,28 @@ import styled, { css } from "styled-components";
 import Link from "next/link";
 
 export const StyledHeader = styled.header`
-  display: grid;
-  grid-template-rows: 1fr;
-  grid-template-columns: auto 1fr;
   position: fixed;
   top: 0px;
   left: 0;
   width: 100vw;
   height: 40px;
   grid-area: head;
-  margin-bottom: 40px;
-  background: #0d0d0d;
+  background-color:${({ theme }) => theme.bg_colors.secondary};
   z-index: 10;
   box-shadow: 0px 15px 25px rgba(0, 0, 0, 0.35);
-  @media${({ theme }) => theme.media.tablet} {
-    grid-template-columns: 1fr 30%;
-  } ;
+  
 `;
+export const StyledContainer = styled.section`
+  display: grid;
+  grid-template-rows: 1fr;
+  grid-template-columns: auto 1fr;
+  max-width:1200px;
+  margin:0px auto;
+  height:100%;
+  @media${({ theme }) => theme.media.tablet} {
+    grid-template-columns:1fr auto 1fr;
+  } ;
+`
 export const StyledBurger = styled.div`
   cursor: pointer;
   padding: 20px 40px 20px 15px;
@@ -112,7 +117,6 @@ export const StyledNav = styled.nav`
   display: none;
   @media${({ theme }) => theme.media.tablet} {
     align-self: center;
-    margin-left: 270px;
     display: block;
   }
 `;

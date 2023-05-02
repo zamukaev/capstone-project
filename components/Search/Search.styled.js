@@ -5,11 +5,10 @@ export const StyledInput = styled.input`
   height: 100%;
   width: 100%;
   color: ${({ theme }) => theme?.colors?.white};
-  background: ${({ theme }) => theme?.bg_colors?.primary};
-  padding: 10px;
+  background: ${({ theme, bg }) => bg || theme?.bg_colors?.primary};
   outline: none;
-  margin-left: 30px;
   font-size: 16px;
+  padding:0px 5px;
 `;
 export const StyledSearchContainer = styled.section`
   position: relative;

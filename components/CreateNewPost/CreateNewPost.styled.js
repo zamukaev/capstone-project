@@ -8,15 +8,12 @@ export const StyledFormSection = styled.section`
   align-items: center;
   grid-template-rows: ${({ rows }) => rows || "auto 1fr"};
   grid-template-columns: ${({ columns }) => columns || "1fr"};
-  justify-items: ${({ justifyItems }) => justifyItems || "start"};
   background: ${({ theme }) => theme?.bg_colors?.primary};
   border-radius: 5px;
   padding: 25px;
   margin: ${(props) => props.margin || "0px"};
   gap: 15px;
-  @media${({ theme }) => theme?.media?.tablet} {
-    grid-template-columns: 50%;
-  }
+
   ${({ position }) => {
     return (
       position &&

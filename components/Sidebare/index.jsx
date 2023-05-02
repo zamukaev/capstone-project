@@ -20,10 +20,12 @@ import { useAuthorizationMe, useBurgerMenuStore } from "../../zustand/store";
 
 import { useRouter } from "next/router";
 import { Paragraph } from "../ui/Paragraph/Paragraph.styled";
+import { StyledInput } from "../Search/Search.styled";
+import { userApi } from "../../axios/api";
 
 export const Sidebare = () => {
   const router = useRouter();
-  const { isAuthorized, setIsAuthorized, user } = useAuthorizationMe(
+  const { isAuthorized, setIsAuthorized, user, setUser } = useAuthorizationMe(
     (state) => state
   );
   const { isActive, setIsActive } = useBurgerMenuStore((state) => state);
@@ -32,6 +34,8 @@ export const Sidebare = () => {
       return [window.innerWidth, window.innerHeight];
     }
   });
+  const [status, setStatus] = useState(user.status);
+  const [isClicked, setIsClicked] = useState(false);
 
   const handleLogout = () => {
     localStorage.setItem("token", "");
@@ -41,6 +45,9 @@ export const Sidebare = () => {
       router.push("/");
     }
   };
+  const handlerStatusChange = async () => {
+
+  }
 
   useEffect(() => {
     const handleWindowResize = () => {
@@ -55,22 +62,19 @@ export const Sidebare = () => {
 
   return (
     <StyledSidebareContainer active={isActive && "active"}>
-      <StyledTop margin="0px 0px 25px 0px">
-        <StyledTopContent>
-          <Image src="/images/avatar.png" alt="avatar" width={95} height={95} />
-          <StyledInfos>
-            <Paragraph>
-              <StyledSpan>
-                {user.firstname} {user.lastname}
-              </StyledSpan>
-            </Paragraph>
-            <StyledSpan clr={({ theme }) => theme.colors.light_white}>
-              {user.status}
+      <StyledTopContent>
+        <Image src="/images/avatar.png" alt="avatar" width={130} height={130} />
+        <StyledInfos>
+          <Paragraph>
+            <StyledSpan>
+              {user.firstname} {user.lastname}
             </StyledSpan>
-          </StyledInfos>
-        </StyledTopContent>
-      </StyledTop>
-
+          </Paragraph>
+          <StyledSpan onClick={handlerStatusChange} clr={({ theme }) => theme.colors.light_white}>
+            {user.status}
+          </StyledSpan>
+        </StyledInfos>
+      </StyledTopContent>
       <StyledSidebareUl
         margin="0px 0px 15px 0px"
         padding="0px 10px 0px 10px"
@@ -104,7 +108,7 @@ export const Sidebare = () => {
           Einstellungen
         </StyledListItem>
       </StyledSidebareUl>
-      <StyledButtonsContainer padding="15px">
+      <StyledButtonsContainer padding="0px 0px 0px 10px">
         {isAuthorized ? (
           <Button
             onClick={handleLogout}
@@ -113,6 +117,7 @@ export const Sidebare = () => {
             radius="5px"
             bgcolor={({ theme }) => theme.bg_colors.btn_secondary_color}
             margin="0px 15px 0px 0px"
+            hover="#d1160c"
           >
             Abmelden
           </Button>
@@ -136,6 +141,7 @@ export const Sidebare = () => {
           padding="10px 13px"
           radius="5px"
           bgcolor={({ theme }) => theme.bg_colors.btn_primary_color}
+          hover="#0713fc"
         >
           Beitrag beginnen
         </Button>

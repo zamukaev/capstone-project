@@ -70,7 +70,7 @@ const CreateNewPost = ({ post, isEditing, onHandleIsEditing }) => {
   };
 
   return (
-    <StyledFormSection>
+    <StyledFormSection width="100%">
       <Headline margin="0px 0px 25px 0px">Neuer Beitrag erstellen</Headline>
       <StyledImageContainer>
         {imageUrl && (

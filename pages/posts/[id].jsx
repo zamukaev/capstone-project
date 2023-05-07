@@ -80,6 +80,7 @@ const Detais = ({ post }) => {
         width="1200px"
         rows="auto auto 1fr"
         colums="minmax(1fr, 500px)"
+
       >
         {user._id === post.user && isAuthorized && (
           <StyledEditAndDeletMode>

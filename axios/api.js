@@ -42,5 +42,13 @@ class authAPI {
     return instance.get("/api/auth-me");
   }
 }
+
+class userAPI {
+  setStatus(id, status) {
+
+    return instance.put('/api/user/', { id, status })
+  }
+}
+export const userApi = new userAPI();
 export const postsApi = new postsAPI();
 export const authApi = new authAPI();

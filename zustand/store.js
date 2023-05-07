@@ -18,7 +18,9 @@ export const usePostDeletePopup = create((set) => ({
 }));
 export const useAuthorizationMe = create((set) => ({
   isAuthorized: false,
-  user: {},
+  user: {
+
+  },
   setIsAuthorized: (value) =>
     set((state) => ({ isAuthorized: Boolean(value) })),
   setUser: (value) => set((state) => ({ user: value })),

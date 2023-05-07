@@ -13,8 +13,9 @@ import GlobalStyle from "../styles";
 import { useRouter } from "next/router";
 
 const StyledWrapper = styled.section`
+  max-width:1200px;
+  margin:0px auto;
   position: relative;
-  margin: 0px auto;
   min-height: 100vh;
   color: ${({ theme }) => theme.colors.white};
   display: grid;
@@ -22,19 +23,22 @@ const StyledWrapper = styled.section`
     "head head"
     "main main"
     "footer footer";
-  grid-template-rows: 50px 1fr 50px;
+  grid-template-rows: 40px 1fr 40px;
   grid-template-columns: 1fr;
+   gap:20px;
   @media${({ theme }) => theme.media.tablet} {
     grid-template-areas:
-      "sidebare head"
+      "head head"
       "sidebare main"
-      "sidebare footer";
-    grid-template-columns: 250px 1fr;
+      "footer footer";
+    grid-template-columns: 300px 1fr;
     grid-template-rows: 40px 1fr 40px;
+    gap:20px;
   }
 `;
 
 const StyledMain = styled.main`
+margin:0px 10px;
   ${({ active }) => {
     return active
       ? css`
@@ -46,8 +50,6 @@ const StyledMain = styled.main`
           gap: 30px;
           grid-template-rows: ${({ rows }) => rows};
           grid-template-columns: ${({ columns }) => columns};
-          padding: 0px 20px;
-          margin-top: 20px;
         `;
   }};
 `;

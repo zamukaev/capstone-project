@@ -34,7 +34,7 @@ img {
 html,
 body {
   height:100%;
-  font-size:14px;
+  font-size:16px;
   line-height:1;
   margin: 0;
   font-family: system-ui;

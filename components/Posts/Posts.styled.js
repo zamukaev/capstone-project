@@ -7,13 +7,6 @@ export const StyledUl = styled.ul`
   margin: ${(props) => props.margin || "0px"};
   padding: ${(props) => props.padding || "0px"};
   gap: 30px;
-
-  @media${({ theme }) => theme.media?.tablet} {
-    grid-template-columns: 1fr;
-  }
-  @media${({ theme }) => theme.media?.desktop} {
-    grid-template-columns: 1fr 1fr;
-  }
 `;
 
 export const StyledListItem = styled.li`

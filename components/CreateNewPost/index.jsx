@@ -70,7 +70,7 @@ const CreateNewPost = ({ post, isEditing, onHandleIsEditing }) => {
   };
 
   return (
-    <StyledFormSection>
+    <StyledFormSection width="100%">
       <Headline margin="0px 0px 25px 0px">Neuer Beitrag erstellen</Headline>
       <StyledImageContainer>
         {imageUrl && (
@@ -88,6 +88,7 @@ const CreateNewPost = ({ post, isEditing, onHandleIsEditing }) => {
             padding="10px 15px"
             radius="5px"
             justifySelf="start"
+            margin="0px 0px 10px 0px"
           >
             Hochladen
           </Button>
@@ -97,7 +98,7 @@ const CreateNewPost = ({ post, isEditing, onHandleIsEditing }) => {
             onClick={() => setImageUrl("")}
             padding="10px 15px"
             radius="5px"
-            margin="0px 0px 0px 10px"
+            margin="0px 0px 10px 0px"
             justifySelf="start"
             bgcolor={({ theme }) => theme.bg_colors.btn_secondary_color}
           >

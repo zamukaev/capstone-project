@@ -9,7 +9,7 @@ export const StyledForm = styled.form`
   background: ${({ theme }) => theme?.bg_colors?.secondary};
   box-shadow: ${({ shadow }) => shadow || "0px 15px 25px rgba(0, 0, 0, 0.35)"};
   border-radius:5px;
-  @media ${({ theme }) => theme.media.tablet}{
+  @media ${({ theme }) => theme?.media?.tablet}{
    width: 600px; 
    padding:30px 40px
   }

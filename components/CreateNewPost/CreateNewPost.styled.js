@@ -3,8 +3,8 @@ import Image from "next/image";
 
 export const StyledFormSection = styled.section`
   max-width: ${({ width }) => width};
+  position:${({ position }) => position || ""}
   display: grid;
-  justify-content: center;
   align-items: center;
   grid-template-rows: ${({ rows }) => rows || "auto 1fr"};
   grid-template-columns: ${({ columns }) => columns || "1fr"};
@@ -13,12 +13,11 @@ export const StyledFormSection = styled.section`
   padding: 25px;
   margin: ${(props) => props.margin || "0px"};
   gap: 15px;
-
   ${({ position }) => {
     return (
       position &&
       css`
-        position: absolute;
+        position: fixed;
         height: 100%;
         top: 0;
         left: 0;
@@ -26,6 +25,10 @@ export const StyledFormSection = styled.section`
         width: 100%;
         height: 100%;
         margin: 0px;
+        display: grid;
+        grid-template-rows: ${({ rows }) => rows || "1fr"};
+        grid-template-columns: ${({ columns }) => columns || "1fr"};
+       
       `
     );
   }}
